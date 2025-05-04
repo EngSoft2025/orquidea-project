@@ -1,4 +1,4 @@
 # Readme
 
-1. executa: npm install
-2. executa: npm run -dev
+Instalar as dependências: npm install
+Rodar a aplicação: npm run dev
