@@ -1,4 +1,4 @@
-<h1 align="center">Orquidea</h1>
+<h1 align="center">Orquidea 📚💻 </h1>
 <p align="center"> Projeto da disciplina SSC0130 - Engenharia de Software</p>
 
 <p align="center">
@@ -16,7 +16,10 @@
   <a href="#agradecimentos">Agradecimentos</a>
 </p>
 
-<p align="center"> <b>Orquidea</b> é uma plataforma web para gerenciamento de publicações científicas, desenvolvida pela equipe Lattes Mas Não Morde. O sistema integra dados acadêmicos de múltiplas fontes, permitindo a consolidação de perfis, citações e métricas de impacto de forma intuitiva, moderna e centralizada.</p>
+<p align="center">
+  <b>Orquidea</b> é uma plataforma web para consolidação e análise de dados acadêmicos, desenvolvida pela equipe Lattes Mas Não Morde. A proposta é oferecer uma experiência mais intuitiva, integrada e informativa em relação às soluções atuais, como o Currículo Lattes e o ORCID. O sistema centraliza perfis, citações e métricas de impacto científico a partir de múltiplas fontes, com foco em usabilidade, automação e apoio à gestão de produção acadêmica.
+</p>
+
 
 ## <div id="estrutura-do-projeto"></div>Estrutura do Projeto
 
@@ -24,11 +27,11 @@
 
 ## <div id="instalacao"></div>Instalação e Uso
 
-Instalar as dependências:
+Para instalar as dependências e iniciar o ambiente de desenvolvimento local, execute os seguintes comandos:
 
 ```bash
-npm install
-npm run dev
+npm install        # Instala todas as dependências do projeto
+npm run dev        # Inicia o servidor de desenvolvimento
 ```
 
 ## <div id="objetivo"></div>Objetivo
@@ -41,10 +44,10 @@ Criar uma solução que vá além do Lattes e do ORCID, com foco em:
 
 ## <div id="tecnologias"></div>Tecnologias
 
-- *Front-end:* React.js
-- *Gerenciamento de Tarefas:* Notion
-- *Controle de Versão:* Git + GitHub (modelo Git Flow)
-- *APIs externas:* ORCID e outras fontes bibliográficas
+- *Front-end:* Desenvolvido com React.js, focando em interfaces modernas e responsivas.
+- *Gerenciamento de Tarefas:* Organização e acompanhamento pelo Notion.
+- *Controle de Versão:* Git com repositório no GitHub, seguindo o modelo Git Flow.
+- *Integração com APIs:* Conexão com a API do ORCID e outras fontes bibliográficas para extração automatizada de dados.
 
 ## <div id="estrutura_branches"></div>Estrutura de Branches
 
@@ -53,7 +56,6 @@ Criar uma solução que vá além do Lattes e do ORCID, com foco em:
 - **feature/<nome-da-feature>:** branches específicas para cada funcionalidade ou correção
 
 ## <div id="testes"></div>Testes
-
 
 Realizamos testes em diferentes níveis:
 
@@ -108,5 +110,3 @@ Gostaríamos de agradecer aos ..., pela sua orientação e apoio ao longo deste 
 - Pietra Gullo Salgado Chaves - **14603822** ([Github](https://github.com/MatheusPaivaa))
 
 Estudantes de Bacharelado em Ciência da Computação - USP
-
----
