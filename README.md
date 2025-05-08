@@ -1,8 +1,28 @@
-# Orquidea
+<h1 align="center">Orquidea</h1>
+<p align="center"> Projeto da disciplina SSC0130 - Engenharia de Software</p>
 
-*Orquidea* é uma plataforma web para gerenciamento de publicações científicas, desenvolvida pela equipe Lattes Mas Não Morde. O sistema integra dados acadêmicos de múltiplas fontes, permitindo a consolidação de perfis, citações e métricas de impacto de forma intuitiva, moderna e centralizada.
+<p align="center">
+  <a href="#estrutura-do-projeto">Estrutura do Projeto</a> • 
+  <a href="#instalacao">Instalação e Uso</a> • 
+  <a href="#objetivo">Objetivo</a> • 
+  <a href="#tecnologias">Tecnologias</a> • 
+  <a href="#estrutura_branches">Estrutura de Branches</a> • 
+  <a href="#testes">Testes</a> • 
+  <a href="#ciclo">Ciclo de Desenvolvimento</a> • 
+  <a href="#cronograma">Cronograma</a> • 
+  <a href="#riscos">Gerenciamento de Riscos</a> •
+  <a href="#contribuindo">Contribuição</a> •
+  <a href="#licenca">Licença</a> •
+  <a href="#agradecimentos">Agradecimentos</a>
+</p>
 
-## ▶️ Como rodar o projeto localmente
+<p align="center"> <b>Orquidea</b> é uma plataforma web para gerenciamento de publicações científicas, desenvolvida pela equipe Lattes Mas Não Morde. O sistema integra dados acadêmicos de múltiplas fontes, permitindo a consolidação de perfis, citações e métricas de impacto de forma intuitiva, moderna e centralizada.</p>
+
+## <div id="estrutura-do-projeto"></div>Estrutura do Projeto
+
+...
+
+## <div id="instalacao"></div>Instalação e Uso
 
 Instalar as dependências:
 
@@ -11,7 +31,7 @@ npm install
 npm run dev
 ```
 
-## 🚀 Objetivo
+## <div id="objetivo"></div>Objetivo
 
 Criar uma solução que vá além do Lattes e do ORCID, com foco em:
 
@@ -19,20 +39,21 @@ Criar uma solução que vá além do Lattes e do ORCID, com foco em:
 - Integração automática com APIs de dados acadêmicos
 - Ferramentas de busca, comparação de perfis e análise de impacto científico
 
-## 🛠️ Tecnologias
+## <div id="tecnologias"></div>Tecnologias
 
 - *Front-end:* React.js
 - *Gerenciamento de Tarefas:* Notion
 - *Controle de Versão:* Git + GitHub (modelo Git Flow)
 - *APIs externas:* ORCID e outras fontes bibliográficas
 
-## 📁 Estrutura de Branches
+## <div id="estrutura_branches"></div>Estrutura de Branches
 
 - **main:** versão estável e pronta para uso
 - **develop:** versão em desenvolvimento com funcionalidades em teste
 - **feature/<nome-da-feature>:** branches específicas para cada funcionalidade ou correção
 
-## 🧪 Testes
+## <div id="testes"></div>Testes
+
 
 Realizamos testes em diferentes níveis:
 
@@ -41,7 +62,7 @@ Realizamos testes em diferentes níveis:
 - Testes de regressão e de fluxo completo
 - Testes de desempenho (com grandes volumes de dados)
 
-## 🔁 Ciclo de Desenvolvimento
+## <div id="ciclo"></div>Ciclo de Desenvolvimento
 
 1. Registro de issues (bug, melhoria, docs)
 2. Triagem quinzenal e priorização (1 a 5)
@@ -50,7 +71,7 @@ Realizamos testes em diferentes níveis:
 5. Revisão de código e integração
 6. Deploy e verificação pós-publicação
 
-## 📅 Cronograma
+## <div id="cronograma"></div>Cronograma
 
 | Incremento | Entrega    | Descrição                                      |
 |------------|------------|-----------------------------------------------|
@@ -60,7 +81,8 @@ Realizamos testes em diferentes níveis:
 | 4          | 11/06/2025 | Complemento de citações manuais              |
 | 5          | 18/06/2025 | Busca, comparação e ranking de pesquisadores |
 
-## ⚠️ Gerenciamento de Riscos
+## <div id="riscos"></div>Gerenciamento de Riscos
+
 
 Problemas previstos:
 - Instabilidade ou limitação nas APIs externas
@@ -69,15 +91,22 @@ Problemas previstos:
 
 Planos de contingência foram estabelecidos para todos os riscos identificados.
 
+## <div id="contribuindo"></div>Contribuição
+Contribuições são bem-vindas! Por favor, faça um fork do repositório e envie um pull request com suas alterações.
+
+## <div id="licenca"></div>Licença
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
+
+## <div id="acknowledgements"></div>Agradecimentos
+Gostaríamos de agradecer aos ..., pela sua orientação e apoio ao longo deste projeto.
+
 ## 👥 Equipe
 
-- Felipe de Castro Azambuja (nº USP: 14675437)  
-- João Pedro Viguini T.T. Correa (nº USP: 14675503) 
-- Matheus Paiva Angarola (nº USP: 12560982)
-- Pietra Gullo Salgado Chaves (nº USP: 14603822) 
+- Felipe de Castro Azambuja - **14675437** ([Github](https://github.com/MatheusPaivaa))
+- João Pedro Viguini T.T. Correa - **14675503** ([Github](https://github.com/MatheusPaivaa))
+- Matheus Paiva Angarola - **12560982** ([Github](https://github.com/MatheusPaivaa))
+- Pietra Gullo Salgado Chaves - **14603822** ([Github](https://github.com/MatheusPaivaa))
 
 Estudantes de Bacharelado em Ciência da Computação - USP
 
 ---
-
-> Projeto desenvolvido como parte da disciplina *SSC0130 - Engenharia de Software* – Universidade de São Paulo (2025)
