@@ -93,6 +93,11 @@ Problemas previstos:
 
 Planos de contingência foram estabelecidos para todos os riscos identificados.
 
+<p align="center">
+  
+   <img align="center" text-align="center" width="40%" src="https://github.com/EngSoft2025/orquidea-project/tree/main/assets/manutencao.png">
+</p>
+
 ## <div id="contribuindo"></div>Contribuição
 Contribuições são bem-vindas! Por favor, faça um fork do repositório e envie um pull request com suas alterações.
 
