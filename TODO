@@ -1,0 +1,3 @@
+- tentar puxar da API as palavras chave das áreas de pesquisa do cabra (a API chama de keywords)
+- arrumar a barra de pesquisa para conseguirmos colocar o nome do cabra
+    - por enquanto só funciona se a gente colocar o ORCID ID direto, oq nao eh mt conveniente

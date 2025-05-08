@@ -25,7 +25,7 @@ const PaginaPesquisador = () => {
           fetch(`https://pub.orcid.org/v3.0/${orcidID}/record`, {
             headers: { Accept: "application/json" },
           }),
-          fetch(`https://pub.orcid.org/v3.0/${orcidID}/works`, {
+          fetch(`https://pub.orcid.org/v3.0/${orcidID}/works`, { // ainda não estamos usando esse aqui
             headers: { Accept: "application/json" },
           }),
         ]);
