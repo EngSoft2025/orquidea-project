@@ -1,4 +1,4 @@
-<h1 align="center">Orquidea 📚💻 </h1>
+<h1 align="center">Orquidea ❀🔎 </h1>
 <p align="center"> Projeto da disciplina SSC0130 - Engenharia de Software</p>
 
 <p align="center">
