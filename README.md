@@ -17,13 +17,32 @@
 </p>
 
 <p align="center">
+[COLOCAR IMAGEM DO PROJETO]
+</p>
+
+<p align="center">
   <b>Orquidea</b> é uma plataforma web para consolidação e análise de dados acadêmicos, desenvolvida pela equipe Lattes Mas Não Morde. A proposta é oferecer uma experiência mais intuitiva, integrada e informativa em relação às soluções atuais, como o Currículo Lattes e o ORCID. O sistema centraliza perfis, citações e métricas de impacto científico a partir de múltiplas fontes, com foco em usabilidade, automação e apoio à gestão de produção acadêmica.
 </p>
 
 
 ## <div id="estrutura-do-projeto"></div>Estrutura do Projeto
 
-...
+Este projeto está organizado para facilitar o desenvolvimento e a manutenção de uma aplicação front-end moderna. Abaixo está uma visão geral das principais pastas e arquivos:
+
+```bash
+├── assets/              # Arquivos estáticos como imagens e ícones
+├── docs/                # Documentação de requisitos, plano de projeto, etc.
+├── public/              # Arquivos públicos acessíveis diretamente
+├── src/                 # Código-fonte da aplicação
+│   └── ...              # Componentes, páginas, estilos, etc.
+├── .gitignore           # Arquivos e pastas ignorados pelo Git
+├── index.html           # HTML principal da aplicação
+├── LICENSE              # Licença do projeto
+├── README.md            # Documentação inicial do projeto
+├── package.json         # Informações e dependências do projeto
+├── package-lock.json    # Registro exato das versões instaladas
+├── vite.config.js       # Configuração do Vite (build tool)
+```
 
 ## <div id="instalacao"></div>Instalação e Uso
 
@@ -95,7 +114,7 @@ Planos de contingência foram estabelecidos para todos os riscos identificados.
 
 <p align="center">
   
-   <img align="center" text-align="center" width="40%" src="https://github.com/EngSoft2025/orquidea-project/tree/main/assets/manutencao.png">
+   <img align="center" text-align="center" width="60%" src="https://github.com/EngSoft2025/orquidea-project/blob/6fdc34addce9a9510fc94453ba45c0c51b922f42/assets/manutencao.png">
 </p>
 
 ## <div id="contribuindo"></div>Contribuição
