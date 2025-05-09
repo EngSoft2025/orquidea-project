@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
+import ResearcherAvatar from "../components/profile/ResearcherAvatar";
 
 
 /* aqui pode tá parecendo uma bagunça, mas é onde estamos chamando a API do orcid
@@ -55,7 +56,7 @@ const PaginaPesquisador = () => {
 
     fetchDados();
 
-  }, [orcidID]); /* o effect é chamado toda vez que o orcidID muda */
+  }, [orcidID]); /* esse effect é chamado toda vez que o orcidID muda */
 
   const totalPubs = works.length;
   const latest = works.slice(0, 4);
@@ -68,7 +69,10 @@ const PaginaPesquisador = () => {
         <div className="researchCard">
           {dados ? (
             <div>
-              <img></img>
+              <ResearcherAvatar 
+                  firstName={dados.person.name?.['given-names']?.value}
+                  lastName={dados.person.name?.['family-name']?.value}
+              />
               <p>
                 {dados.person.name?.["given-names"]?.value}{" "}
                 {dados.person.name?.["family-name"]?.value}
