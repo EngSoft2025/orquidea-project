@@ -22,12 +22,12 @@ const PaginaPesquisador = () => {
     const fetchDados = async () => {
       try {
         const [recordRes, worksRes] = await Promise.all([
-          fetch(`https://pub.orcid.org/v3.0/${orcidID}/record`, {
+          fetch(`https://pub.orcid.org/v3.0/${orcidID}/record`, { // para coletarmos infos básicas (nome etc)
             headers: { Accept: "application/json" },
           }),
-          fetch(`https://pub.orcid.org/v3.0/${orcidID}/works`, { // ainda não estamos usando esse aqui
+          fetch(`https://pub.orcid.org/v3.0/${orcidID}/works`, {
             headers: { Accept: "application/json" },
-          }),
+          }),     
         ]);
 
         const recordData = await recordRes.json();
@@ -79,6 +79,18 @@ const PaginaPesquisador = () => {
               <p>
                 <strong>Total de publicações:</strong> {totalPubs}
               </p>
+
+              
+              <p>
+                {dados.person.keywords?.keyword?.map((kw, i) => (
+
+                  <span key={i} className="keyword-box">
+                    {kw.content}  
+                  </span>
+
+                ))}
+              </p>
+
 
             </div>
           ) : (
