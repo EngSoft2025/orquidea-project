@@ -16,6 +16,22 @@
   border-bottom: 1px solid rgb(211, 211, 211);
 }
 
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
 /* TEXTO ORQUIDEA */
 .logo {
   font-size: 24px;
@@ -78,6 +94,14 @@
   padding: 14px;
   border-radius: 8px;
   width: 450px;
+  border: 1px solid #ccc;           /* Borda cinza clara */
+  outline: none;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.searchbar:focus {
+  border-color: #1976d2;            /* Azul mais marcante ao focar */
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.2); /* Sombra suave azul */
 }
 
 
@@ -92,6 +116,12 @@
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.3s;
+  outline: none;
+}
+
+
+.button_search:hover{
+  background-color: #e0e0e0;
 }
 
 .button_page:hover {
@@ -142,6 +172,18 @@
 
 /* ========= PÁGINA DO PESQUISADOR =========*/
 
+.searchResults{
+  width: 93%;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.searchResults h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
 .researchSection {
   background-color: rgb(225, 225, 233);
   width: 100%;
@@ -191,6 +233,29 @@
   margin: 0 auto;
 }
 
+.tabela-resultados {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 12px;
+  margin-top: 2rem;
+  font-size: 0.95rem;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tabela-resultados tbody tr {
+  animation: fadeSlideIn 0.4s ease-in;
+}
+
 .researchInfo {
   background-color: white;
   padding: 45px;
@@ -200,6 +265,7 @@
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
 
 .researchInfo p {
 
@@ -219,6 +285,170 @@
   border-radius: 5px;
   margin-left: 5px;
   font-size: 14px;
+}
+
+/* ============= PAGINA DA PESQUISA POR NOME =============== */
+
+.tabela-resultados {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  font-size: 0.95rem;
+}
+
+.tabela-resultados th,
+.tabela-resultados td {
+  border: 1px solid #ddd;
+  padding: 20px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-left: 0;
+  border-right: 0;
+}
+
+.tabela-resultados th {
+  background-color: #f5f5f5;
+  font-weight: bold;
+}
+
+.tabela-resultados tr:hover {
+  background-color: #f9f9f9;
+}
+
+.link-orcid {
+  color: #1976d2;
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0;
+}
+
+.ver-mais-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.ver-mais-btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.ver-mais-btn:hover {
+  background-color: #125ba1;
+}
+
+
+.filtro-avancado {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  border-radius: 6px;
+  background-color: #fff;
+  max-width: 100%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  margin-bottom: 2rem;
+  text-align: right;
+  animation: expandFiltro 0.3s ease-in-out;
+
+}
+
+@keyframes expandFiltro {
+  from {
+    opacity: 0;
+    transform: scaleY(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+.filtro-linha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.filtro-avancado input[type="text"] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.input-label-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 200px;
+}
+
+.input-label-group label {
+  font-size: 0.85rem;
+  margin-bottom: 0.2rem;
+  color: #006699;
+  font-weight: 500;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.orcid-input {
+  flex: 1;
+  min-width: 200px;
+}
+
+.search-button {
+  background-color: #0077a6;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.search-button:hover {
+  background-color: #005f87;
+}
+
+.toggle-filtro-btn {
+  background-color: transparent;
+  color: #0077a6;
+  border: 2px solid #0077a6;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  text-align: right;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.toggle-filtro-btn:hover {
+  background-color: #0077a6;
+  color: white;
+}
+
+.filtro-toggle-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
 }
 
 
