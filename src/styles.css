@@ -7,25 +7,38 @@
 
 /* NAVBAR */
 .navbar {
-  background-color: #f6f6f7;
-  color: blue;
-  padding: 24px;
-  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  color: var(--bg-light);
+  padding: 16px 24px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgb(211, 211, 211);
+  z-index: 20;
+}
+
+.navbar a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--bg-light);
 }
 
 /* TEXTO ORQUIDEA */
-.logo {
-  font-size: 24px;
+.texto_orquidea {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;;
+  color:#ffffff;
+  font-size: 50px;
   padding-left: 10px;
 }
 
 /* LOGO ORQUIDEA */
 .logo_img {
-  width: 30px;
-  height: 30px;
+  width: 175px;
+  height: 175px;
 }
 
 
@@ -51,13 +64,25 @@
 
 
 .section_search {
-  background-color: blue;
-  width: 100%;
-  height: 400px;
+  position: relative;
+  padding-top: 100px; 
+  background: linear-gradient(180deg, #15202B 0%, #000000 100%);
+  height: 500px;
   display: flex;
   flex-direction: column;
-  justify-content: center; 
-  align-items: center;     
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+.logo-pos {
+  position: absolute;
+  top: 100px;
+  left: calc(52% - 300px); 
+  display: flex;
+  align-items: center;
+  z-index: 20;
 }
 
 
@@ -75,17 +100,29 @@
 
 /* A barra de pesquisa propriamente dita */
 .searchbar {
-  padding: 14px;
+  padding: 12px 14px;
   border-radius: 8px;
   width: 450px;
+  min-height: 40px;
+  border: 2px solid rgba(255,255,255,0.5);
+  transition: width 0.3s ease,
+              height 0.3s ease,
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
 }
 
-
+.searchbar:focus {
+  width: 600px;
+  height: 48px;
+  box-shadow: 0 0 8px rgba(255,255,255,0.5);
+  border-color: #ffffff;
+  outline: none;
+}
 /* Botão do lado da barra de pesquisa */
 .button_search {
   margin-left: 25px;
   background-color: white;
-  color: #095fc0;
+  color: goldenrod;
   border: none;
   padding: 12px 24px;
   border-radius: 4px;
@@ -102,7 +139,7 @@
 /* ============ SESSÃO FLASHCARDS ===============*/
 
 .section_comp{
-  background-color: white;
+  background-color: #000000;
   width: 100%;
   height: 400px;
   display: flex;
@@ -110,36 +147,60 @@
   justify-content: center; 
   align-items: center;
   gap: 35px;
-
 }
 
-.flashcard {
-  background-color: white;
+.flashcard { /* versao colapsada dos itens interativos */
+  background: linear-gradient(180deg, #15202B 0%, #15202B 20%, #000000 100%);
   width: 20%;
-  height: 250px;
+  height: 180px;
+  overflow: hidden;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   align-items: center;
   text-align: center;
   padding: 10px;
   gap: 10px;
   border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: 
+    height 0.4s ease, 
+    box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
-.flashcard img{
-  padding-bottom: 10px;
+
+.flashcard:hover { /* versao expandida dos itens interativos */
+  height: 300px;      
+  box-shadow:
+    0 6px 30px rgba(255, 255, 255, 0.3),
+    0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+
+.flashcard img { /* imagem do item interativo */
   padding-top: 20px;
   width: 80px;
   height: 80px;
 }
 
-.flashcard p{
-  max-width: 300px;
+
+.flashcard h2, /* título do item interativo */
+.flashcard p { /* texto do item interativo */
+  color: white;
+  margin: 8px 0;
+  padding: 0 8px;
 }
 
+.flashcard p {
+  display: none;
+}
 
-
+.flashcard:hover p {
+  display: block;
+  margin-top: 8px;
+  padding: 0 8px;
+  color: white;
+}
 /* ========= PÁGINA DO PESQUISADOR =========*/
 
 .researchSection {
@@ -209,7 +270,7 @@
 
 .footer{
 
-  background-color: blue;
+  background-color: black;
   color: white;
   padding: 42px;
   font-weight: bold;
@@ -222,7 +283,3 @@
   font-style: normal;
   font-size: 13px;
 }
-
-
-
-  
