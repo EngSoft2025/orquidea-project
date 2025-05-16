@@ -62,14 +62,18 @@ const PaginaPesquisador = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar showSearchBar extraClass="navbar-pesquisador" />
 
       <section className="researchSection">
         <div className="researchCard">
           {dados ? (
             <div>
-              <img></img>
-              <p>
+              <img
+                src="/user-research.png"
+                alt="Placeholder avatar"
+                className="profile_pic"
+              />
+              <p className="researchName">
                 {dados.person.name?.["given-names"]?.value}{" "}
                 {dados.person.name?.["family-name"]?.value}
               </p>
