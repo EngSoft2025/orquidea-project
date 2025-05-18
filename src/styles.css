@@ -5,32 +5,52 @@
   font-family: "Montserrat", sans-serif;
 }
 
+html, body {
+  height: 100%;
+}
+
+body {
+  background: linear-gradient(180deg, #15202B 15%, #000000 100%);
+}
 /* NAVBAR */
 .navbar {
-  background-color: #f6f6f7;
-  color: blue;
-  padding: 24px;
-  font-weight: bold;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  color: var(--bg-light);
+  padding: 16px 24px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgb(211, 211, 211);
+  z-index: 20;
+}
+
+.navbar a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--bg-light);
 }
 
 /* TEXTO ORQUIDEA */
-.logo {
-  font-size: 24px;
+.texto_orquidea {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;;
+  color:#ffffff;
+  font-size: 50px;
   padding-left: 10px;
 }
 
 /* LOGO ORQUIDEA */
 .logo_img {
-  width: 30px;
-  height: 30px;
+  width: 175px;
+  height: 175px;
 }
 
 
   /* BOTÃO PARA IR PRA PAGINA DO PESQUISADOR */
-.button_page {
+/* .button_page {
   margin-left: 70px;
   background-color: white;
   color: #095fc0;
@@ -40,24 +60,57 @@
   cursor: pointer;
   font-weight: bold;
   transition: background-color 0.3s;
-}
+} */
+
 
 .button_page:hover {
   background-color: #e0e0e0;
 }
 
+/* ===== NAVBAR VARIANT FOR PÁGINA DO PESQUISADOR ===== */
+.navbar-pesquisador {
+  position: relative;
+  background: linear-gradient(180deg, #15202B 15%, #000000 100%);
+  padding: 5px 30px;                 /* <<< altura bem menor */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.navbar-pesquisador .logo_img {
+  width: 90px;
+  height: 90px;
+}
 
+.navbar-pesquisador .texto_orquidea {
+  font-size: 40px;
+  color: #ffffff;
+}
 /* ========== SESSÃO 1 ==============*/
 
 
 .section_search {
-  background-color: blue;
-  width: 100%;
-  height: 400px;
+  position: relative;
+  padding-top: 300px; 
+  background: linear-gradient(180deg, #15202B 15%, #000000 100%);
+  height: 300px;
   display: flex;
   flex-direction: column;
-  justify-content: center; 
-  align-items: center;     
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-bottom: flex;
+}
+
+
+.logo-pos {
+  position: absolute;
+  top: 100px;
+  left: calc(52% - 300px); 
+  display: flex;
+  align-items: center;
+  z-index: 20;
 }
 
 
@@ -75,17 +128,29 @@
 
 /* A barra de pesquisa propriamente dita */
 .searchbar {
-  padding: 14px;
+  padding: 12px 14px;
   border-radius: 8px;
   width: 450px;
+  min-height: 40px;
+  border: 2px solid rgba(255,255,255,0.5);
+  transition: width 0.3s ease,
+              height 0.3s ease,
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
 }
 
-
+.searchbar:focus {
+  width: 600px;
+  height: 48px;
+  box-shadow: 0 0 8px rgba(255,255,255,0.5);
+  border-color: #ffffff;
+  outline: none;
+}
 /* Botão do lado da barra de pesquisa */
 .button_search {
   margin-left: 25px;
   background-color: white;
-  color: #095fc0;
+  color: goldenrod;
   border: none;
   padding: 12px 24px;
   border-radius: 4px;
@@ -101,71 +166,101 @@
 
 /* ============ SESSÃO FLASHCARDS ===============*/
 
-.section_comp{
-  background-color: white;
+.section_comp {
+  background-color: #000000;
   width: 100%;
   height: 400px;
   display: flex;
   flex-direction: row;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
-  gap: 35px;
-
+  gap: 10px;
 }
 
-.flashcard {
-  background-color: white;
+
+@media (max-height: 700px) {
+  .section_comp { margin-top: -60px; }
+}
+
+.flashcard { /* versao colapsada dos itens interativos */
+  background: linear-gradient(180deg, #15202B 0%, #15202B 25%, #000000 100%);
   width: 20%;
-  height: 250px;
+  height: 180px;
+  overflow: hidden;
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   align-items: center;
   text-align: center;
   padding: 10px;
   gap: 10px;
   border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: 
+    height 0.4s ease, 
+    box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
-.flashcard img{
-  padding-bottom: 10px;
+
+.flashcard:hover { /* versao expandida dos itens interativos */
+  height: 300px;      
+  box-shadow:
+    0 6px 30px rgba(255, 255, 255, 0.3),
+    0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+
+.flashcard img { /* imagem do item interativo */
   padding-top: 20px;
-  width: 80px;
-  height: 80px;
-}
-
-.flashcard p{
-  max-width: 300px;
+  width: 1o0px;
+  height: 100px;
 }
 
 
+.flashcard h2, /* título do item interativo */
+.flashcard p { /* texto do item interativo */
+  color: white;
+  margin: 8px 0;
+  padding: 0 8px;
+}
 
+.flashcard p {
+  display: none;
+}
+
+.flashcard:hover p {
+  display: block;
+  margin-top: 8px;
+  padding: 0 8px;
+  color: white;
+}
 /* ========= PÁGINA DO PESQUISADOR =========*/
 
 .researchSection {
-  background-color: rgb(225, 225, 233);
+  background: linear-gradient(180deg, #15202B 15%, #000000 100%);
+  min-height: 100vh;
   width: 100%;
-  height: 600px;
   display: flex;
   flex-direction:row;
-  
   padding-left: 40px;
   padding-top: 40px;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .researchCard {
-  background-color: white;
+  background: linear-gradient(180deg, #1E2A38 0%, #15202B 100%);
+  color: #ffffff;
   padding: 45px;
   width: 30%;
-  height: 400px;
-
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start; 
-  
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
 .researchCard p{
@@ -173,24 +268,29 @@
 }
 
 .researchCard img {
-  background-color: aqua;
+  width: 130px;
+  height: 130px;
+  margin: 1px auto 1px; 
   border-radius: 50%;
-  width: 150px;
-  height: 150px;
   object-fit: cover;
-  margin: 0 auto;
   display: block;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 1);
+}
+.researchName {
+  text-align: center;
+  font-size: 24px;      /* ajuste como achar melhor */
+  margin-bottom: 24px;  /* espaço antes do ORCID */
 }
 
-
 .researchInfo {
-  background-color: white;
+  background: linear-gradient(180deg, #1E2A38 0%, #15202B 100%);
+  color: #ffffff;
   padding: 45px;
   width: 65%;
-  height: 400px;
   margin-left: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
 .researchInfo p {
@@ -204,14 +304,40 @@
   padding-top: 15px;
 }
 
+.researchCard p,
+.researchInfo p,
+.researchInfo li {
+  color: #ffffff;
+}
+/*
+.researchCard strong,
+.researchInfo strong,
+.researchInfo h2 {
+  color: goldenrod;
+}*/
+.researchCard strong,
+.researchInfo strong {
+  background: linear-gradient(90deg, #FFD700 0%, #B8860B 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
+}
+
+.researchInfo h2 {
+  background: linear-gradient(90deg, #FFD700 0%, #B8860B 25%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
 /* ============= FOOTER =============== */
 
 .footer{
 
-  background-color: blue;
+  background-color: black;
   color: white;
-  padding: 42px;
+  padding: 24px 42px 16px;  
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -224,5 +350,3 @@
 }
 
 
-
-  

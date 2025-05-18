@@ -1,21 +1,21 @@
 const cards = [
     {
-      icon: "./medal.svg",
+      icon: "./medal.png",
       title: "Showcase Achievements",
       text: "Highlight your research accomplishments, awards, and milestones in one place"
     },
     {
-      icon: "./increase.svg",
+      icon: "./graph.png",
       title: "Track Impact",
       text: "Monitor your citations, h-index, and other key metrics with interactive visualizations."
     },
     {
-        icon: "./docs.svg",
+        icon: "./book.png",
         title: "Import Publications",
         text: "Automatically import your publications from Google Scholar and ORCID with one click."
     },
     {
-        icon: "./people.svg",
+        icon: "./people.png",
         title: "Grow Network",
         text: "Connect with peers, discover potential collaborators, and expand your research network."
       },
