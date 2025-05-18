@@ -6,7 +6,7 @@ const Navbar = () => (
     <Link to="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
       <img className="logo_img" src="../../../public/logo.png" alt="Logo" />
       <span className="logo" style={{color: "blue"}}>Orquidea</span>
-    </Link>
+    </Link>    
   </div>
 );
 
