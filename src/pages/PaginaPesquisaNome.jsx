@@ -147,13 +147,15 @@ const PaginaPesquisaNome = () => {
   const resultadosVisiveis = resultados.slice(0, paginaAtual * itensPorPagina);
 
   return (
-
-    <div>
-      <Navbar />
+    <div className="pageWrapper">
+      <Navbar showSearchBar extraClass="navbar-pesquisador" />
 
       <section className="searchResults">
 
-        <h2>Resultados para{mostrarTermosBusca()}</h2>
+        <h2>
+          <span className="h2-res">Resultados para: </span>
+          <span className="h2-result">{mostrarTermosBusca().replace(/^:\s*/, '')}</span>
+        </h2>
 
         <div className="filtro-toggle-container">
         <button
@@ -205,7 +207,7 @@ const PaginaPesquisaNome = () => {
             />
 
             <button type="submit" className="search-button">
-                SEARCH
+                BUSCAR
             </button>
             </div>
         </form>
@@ -230,7 +232,7 @@ const PaginaPesquisaNome = () => {
               </thead>
               <tbody>
                 {resultadosVisiveis.map((r, i) => (
-                    <tr key={i}>
+                    <tr className="resultCard" key={i}>
                         <td>
                             <button className="link-orcid" onClick={() => irParaPesquisador(r.orcid)}>
                             {r.orcid}

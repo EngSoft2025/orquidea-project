@@ -2,113 +2,78 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
-import ResearcherAvatar from "../components/profile/ResearcherAvatar";
-
-
-/* aqui pode tá parecendo uma bagunça, mas é onde estamos chamando a API do orcid
-pra pegar os dados do pesquisador. Logo abaixo dessa parte tem o HTML da página com os
-dados extraídos */
+import SearchBar from "../components/ui/SearchBar";
 
 const PaginaPesquisador = () => {
-
   const [dados, setDados] = useState(null);
   const [works, setWorks] = useState([]);
-
   const location = useLocation();
   const orcidID = new URLSearchParams(location.search).get("orcid");
 
   useEffect(() => {
     if (!orcidID) return;
 
-    const fetchDados = async () => {
+    (async () => {
       try {
-        const [recordRes, worksRes] = await Promise.all([
-          fetch(`https://pub.orcid.org/v3.0/${orcidID}/record`, { // para coletarmos infos básicas (nome etc)
+        const [rec, wrk] = await Promise.all([
+          fetch(`https://pub.orcid.org/v3.0/${orcidID}/record`, {
             headers: { Accept: "application/json" },
-          }),
+          }).then(r => r.json()),
           fetch(`https://pub.orcid.org/v3.0/${orcidID}/works`, {
             headers: { Accept: "application/json" },
-          }),     
+          }).then(r => r.json()),
         ]);
 
-        const recordData = await recordRes.json();
-        const worksData = await worksRes.json();
+        const name = rec.person.name;
+        setDados({
+          fullName: `${name["given-names"]?.value} ${name["family-name"]?.value}`,
+        });
 
-        const worksList = worksData.group?.map((g) => {
-          const summary = g["work-summary"]?.[0];
-
-          return {
-            title: summary?.title,
-            year: summary?.["publication-date"]?.year?.value,
-          };
-
-        }) || [];
-
-        const sortedWorks = worksList.sort((a, b) => (b.year || 0) - (a.year || 0));
-
-        setDados(recordData);
-        setWorks(sortedWorks);
-
+        const lista =
+          wrk.group?.map(g => {
+            const s = g["work-summary"]?.[0];
+            return {
+              title: s?.title?.title?.value,
+              year: s?.["publication-date"]?.year?.value,
+            };
+          }) || [];
+        setWorks(
+          lista.sort((a, b) => (b.year || 0) - (a.year || 0))
+        );
       } catch (err) {
         console.error(err);
       }
-    };
-
-    fetchDados();
-
-  }, [orcidID]); /* esse effect é chamado toda vez que o orcidID muda */
-
-  const totalPubs = works.length;
-  const latest = works.slice(0, 4);
+    })();
+  }, [orcidID]);
 
   return (
     <div>
-      <Navbar />
+      <Navbar showSearchBar extraClass="navbar-pesquisador" />
 
       <section className="researchSection">
         <div className="researchCard">
           {dados ? (
-            <div>
-              <ResearcherAvatar 
-                  firstName={dados.person.name?.['given-names']?.value}
-                  lastName={dados.person.name?.['family-name']?.value}
-              />
-              <p>
-                {dados.person.name?.["given-names"]?.value}{" "}
-                {dados.person.name?.["family-name"]?.value}
-              </p>
+            <>
+              <img src="/user-research.png" alt="avatar" />
+              <p className="researchName">{dados.fullName}</p>
               <p>
                 <strong>ORCID ID:</strong> {orcidID}
               </p>
               <p>
-                <strong>Total de publicações:</strong> {totalPubs}
+                <strong>Total de publicações:</strong> {works.length}
               </p>
-
-              
-              <p>
-                {dados.person.keywords?.keyword?.map((kw, i) => (
-
-                  <span key={i} className="keyword-box">
-                    {kw.content}  
-                  </span>
-
-                ))}
-              </p>
-
-
-            </div>
+            </>
           ) : (
-            <p>Carregando dados do pesquisador...</p>
+            <p>Carregando dados…</p>
           )}
         </div>
 
         <div className="researchInfo">
-
           <h2>Últimos artigos publicados</h2>
           <ul>
-            {latest.map((w, i) => (
+            {works.slice(0, 4).map((w, i) => (
               <li key={i}>
-                {w.title?.title?.value} {w.year && `(${w.year})`}
+                {w.title} {w.year && `(${w.year})`}
               </li>
             ))}
           </ul>
@@ -116,8 +81,6 @@ const PaginaPesquisador = () => {
       </section>
 
       <Footer />
-
-
     </div>
   );
 };
