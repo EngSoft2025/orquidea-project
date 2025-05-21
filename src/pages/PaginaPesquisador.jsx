@@ -25,9 +25,10 @@ const PaginaPesquisador = () => {
         ]);
 
         const name = rec.person.name;
-        setDados({
-          fullName: `${name["given-names"]?.value} ${name["family-name"]?.value}`,
-        });
+        // setDados({
+        //   fullName: `${name["given-names"]?.value} ${name["family-name"]?.value}`,
+        // });
+        setDados(rec);
 
         const lista =
           wrk.group?.map(g => {
@@ -55,13 +56,22 @@ const PaginaPesquisador = () => {
           {dados ? (
             <>
               <img src="/user-research.png" alt="avatar" />
-              <p className="researchName">{dados.fullName}</p>
+              <p className="researchName">
+                {`${dados.person.name["given-names"].value} ${dados.person.name["family-name"].value}`}
+              </p>
               <p>
                 <strong>ORCID ID:</strong> {orcidID}
               </p>
               <p>
                 <strong>Total de publicações:</strong> {works.length}
               </p>
+              {dados.person.keywords?.keyword?.length > 0 && (
+                <div className="keywords-container">
+                  {dados.person.keywords.keyword.map((kw, i) => (
+                    <span key={i} className="keyword-box">{kw.content}</span>
+                  ))}
+                </div>
+              )}
             </>
           ) : (
             <p>Carregando dados…</p>
@@ -86,3 +96,4 @@ const PaginaPesquisador = () => {
 };
 
 export default PaginaPesquisador;
+
