@@ -3,6 +3,7 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import SearchBar from "../components/ui/SearchBar";
 import cards from "../../public/cards";
+import { Link } from "react-router-dom";
 import FlashCard from "../components/ui/FlashCard";
 
 const Index = () => (
@@ -18,7 +19,17 @@ const Index = () => (
 
     <section className="section_comp">
       {cards.map((card, i) => (
-        <FlashCard key={i} icon={card.icon} title={card.title} text={card.text} />
+        <Link
+          key={i}
+          to={`/${card.title.toLowerCase().replace(/\s+/g, '-')}`}  // A URL será construída com base no título
+          className="card-link"
+        >
+          <FlashCard
+            icon={card.icon}
+            title={card.title}
+            text={card.text}
+          />
+        </Link>
       ))}
     </section>
 
