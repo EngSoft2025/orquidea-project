@@ -1,18 +1,11 @@
 import React from "react";
 
-const FlashCard = (props) => {
-
-    return(
-
-        <div className="flashcard">
-            <img alt="Icon" src={props.icon}></img>
-            <h2>{props.title}</h2>
-            <p>{props.text}</p>
-        </div>
-    );
-
-
-
-}
+const FlashCard = ({ icon, title, text }) => (
+  <div className="flashcard">
+    <img alt="Icon" src={icon} />
+    <h2>{title}</h2>
+    <p>{text}</p>
+  </div>
+);
 
 export default FlashCard;
