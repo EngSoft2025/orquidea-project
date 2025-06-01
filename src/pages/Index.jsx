@@ -1,3 +1,4 @@
+// src/pages/Index.jsx
 import React from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
@@ -6,7 +7,7 @@ import cards from "../../public/cards";
 import FlashCard from "../components/ui/FlashCard";
 
 const Index = () => (
-  <div>
+  <div className="pageWrapper">
     <section className="section_search">
       <div className="logo-pos">
         <img src="/logo.png" alt="Logo" className="logo_img" />

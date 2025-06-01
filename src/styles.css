@@ -42,11 +42,11 @@ body {
   font-size: 50px;
   padding-left: 10px;
 }
-
-/* LOGO ORQUIDEA */
+/* LOGO */
 .logo_img {
-  width: 175px;
-  height: 175px;
+  width: 15vw;        
+  max-width: 175px;  
+  height: auto; 
 }
 
 
@@ -171,12 +171,12 @@ body {
 .section_comp {
   background-color: #000000;
   width: 100%;
-  height: 400px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 10px;
+  flex: 1;
 }
 
 
@@ -613,3 +613,87 @@ body {
 .searchResults h2 .h2-result {
   color: #ffffff;
 }
+
+/* ===================== */
+/* ===== RESPONSIVO ===== */
+/* ===================== */
+
+/* 
+  1) Em resoluções menores que 1024px:
+     - Deixa a searchbar ficar mais estreita (80% do contêiner).
+     - Posiciona o botão de busca logo abaixo da searchbar.
+     - Deixa os flashcards ocuparem 45% da largura (2 por linha).
+*/
+@media (max-width: 1024px) {
+  .section_search {
+    padding-top: 200px; 
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .logo-pos {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .searchbar {
+    width: 80%;
+    max-width: 600px;
+  }
+  .button_search {
+    margin-left: 0;
+    margin-top: 12px;
+  }
+
+  .flashcard {
+    width: 45%;
+    margin: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section_search {
+    padding-top: 150px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .logo-pos {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+
+  .searchbar {
+    width: 100%;
+    max-width: none;
+  }
+
+
+  .button_search {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+  }
+
+  .flashcard {
+    width: 100%;
+    margin: 8px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .section_search {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .searchbar {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .button_search {
+    padding: 10px 0;
+  }
+}
+
+
