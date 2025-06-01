@@ -17,7 +17,6 @@ html, body {
   padding: 2rem;
 }
 
-
 .searchbarComp {
   padding: 12px 14px;
   border-radius: 8px;
@@ -69,7 +68,7 @@ html, body {
 }
 
 
-.researchCard {
+.compararCard {
   flex: 1 1 350px;
   max-width: 850px;
   border: 1px solid #ccc;
@@ -433,7 +432,7 @@ body {
   background: linear-gradient(180deg, #1E2A38 0%, #15202B 100%);
   color: #ffffff;
   padding: 45px;
-  width: 30%;
+  width: 27%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start; 
