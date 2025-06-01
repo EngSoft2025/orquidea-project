@@ -876,4 +876,44 @@ body {
   }
 }
 
-
+/* ============ SESSÃO FLASHCARDS ===============*/
+ 
+.section_comp {
+  background-color: #000000;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap; 
+  padding: 20px; 
+}
+ 
+.card-link {
+  text-decoration: none;  /* Remove o sublinhado do link */
+}
+ 
+@media (max-height: 700px) {
+  .section_comp { margin-top: -60px; }
+}
+ 
+.flashcard { /* versao colapsada dos itens interativos */
+  background: linear-gradient(180deg, #15202B 0%, #15202B 25%, #000000 100%);
+  width: 240px;
+  height: 180px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  gap: 10px;
+  border-radius: 15px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: 
+    height 0.4s ease, 
+    box-shadow 0.3s ease;
+  cursor: pointer;
+}

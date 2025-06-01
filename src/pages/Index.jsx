@@ -5,23 +5,23 @@ import SearchBar from "../components/ui/SearchBar";
 import cards from "../../public/cards";
 import { Link } from "react-router-dom";
 import FlashCard from "../components/ui/FlashCard";
-
+ 
 const Index = () => (
-  <div className="pageWrapper">
+  <div>
     <section className="section_search">
       <div className="logo-pos">
         <img src="/logo.png" alt="Logo" className="logo_img" />
         <span className="texto_orquidea">Orquidea</span>
       </div>
-
+ 
       <SearchBar />
     </section>
-
+ 
     <section className="section_comp">
       {cards.map((card, i) => (
         <Link
           key={i}
-          to={`/${card.title.toLowerCase().replace(/\s+/g, '-')}`}  // A URL será construída com base no título
+          to={`/${card.title.toLowerCase().replace(/\s+/g, '-')}`}
           className="card-link"
         >
           <FlashCard
@@ -32,9 +32,9 @@ const Index = () => (
         </Link>
       ))}
     </section>
-
+ 
     <Footer />
   </div>
 );
-
+ 
 export default Index;
