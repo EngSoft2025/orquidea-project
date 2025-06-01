@@ -67,10 +67,16 @@ const PaginaPesquisaNome = () => {
       return;
     }
 
+    // então, fiz isso para tentar acelerar a busca quando você sabe o nome exato
+    const terms = nomeBusca.trim().split(/\s+/);
+    const queryParam = terms.length >= 2
+      ? `given-names:${terms[0]} AND family-name:${terms[terms.length-1]}`
+      : nomeBusca;
+
     const buscarPorNome = async () => {
       setCarregando(true);
       try {
-        const res = await fetch(`https://pub.orcid.org/v3.0/expanded-search/?q=${encodeURIComponent(nomeBusca)}`, {
+        const res = await fetch(`https://pub.orcid.org/v3.0/expanded-search/?q=${encodeURIComponent(queryParam)}`, {
           headers: { Accept: "application/json" }
         });
 

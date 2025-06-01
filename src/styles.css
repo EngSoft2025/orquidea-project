@@ -7,11 +7,188 @@
 
 html, body {
   height: 100%;
+  overflow-x: hidden; /* previne scroll horizontal */
 }
+
+/* ===== Comparar pesquisadores ===== */
+.compareSection {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+
+.searchbarComp {
+  padding: 12px 14px;
+  border-radius: 8px;
+  width: 100%;
+  min-height: 40px;
+  margin: 10px 0;
+  border: 2px solid rgba(255,255,255,0.5);
+  transition: width 0.3s ease,
+              height 0.3s ease,
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+}
+
+.searchbarCOmp:focus {
+  width: 600px;
+  height: 48px;
+  box-shadow: 0 0 8px rgba(255,255,255,0.5);
+  border-color: #ffffff;
+  outline: none;
+}
+
+.compareContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  align-items: stretch;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1400px;
+  flex-wrap: wrap;
+}
+
+
+.change-button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #f97316;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+
+.change-button:hover {
+  background-color: #ea580c;
+}
+
+
+.researchCard {
+  flex: 1 1 350px;
+  max-width: 850px;
+  border: 1px solid #ccc;
+  padding: 1.5rem;
+  border-radius: 10px;
+  background: #f9f9f9;
+  min-height: 600px;
+  box-sizing: border-box;
+  cursor: default;
+  user-select: none;
+}
+
+.addResearcher {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.addResearcher input {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  width: 80%;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+}
+
+.addResearcher button {
+  padding: 0.5rem 1rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.compareTitle {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.compareTitle h1 {
+  background: linear-gradient(90deg, #FFD700 0%, #B8860B 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.add-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px dashed #ffffff80;
+  background: linear-gradient(180deg, #1E2A38 0%, #15202B 100%);
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.2s, border-color 0.3s;
+}
+
+.add-button:hover {
+  transform: scale(1.1);
+  border-color: #FFD700;
+}
+
+.submit-button {
+  padding: 8px 16px;
+  background-color: white;
+  color: goldenrod;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #e0e0e0;
+}
+
+.lista-tipos {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0.5rem;
+}
+
+.lista-tipos li {
+  background-color: #1e293b;
+  color: #fff;
+  margin-bottom: 0.3rem;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+
+.vs-divider {
+  display: flex;
+  align-items: center;       /* Centraliza verticalmente */
+  justify-content: center;   /* Centraliza horizontalmente */
+  height: 100%;              /* Ocupa altura dos cards ao lado */
+  min-width: 80px;
+  padding: 0 1rem;
+  background: linear-gradient(90deg, #FFD700 0%, #B8860B 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
 
 body {
   background: linear-gradient(180deg, #15202B 15%, #000000 100%);
   background-attachment: fixed;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+    overflow-x: hidden;
 }
 /* NAVBAR */
 .navbar {
@@ -42,11 +219,11 @@ body {
   font-size: 50px;
   padding-left: 10px;
 }
-
-/* LOGO ORQUIDEA */
+/* LOGO */
 .logo_img {
-  width: 175px;
-  height: 175px;
+  width: 15vw;        
+  max-width: 175px;  
+  height: auto; 
 }
 
 
@@ -171,12 +348,12 @@ body {
 .section_comp {
   background-color: #000000;
   width: 100%;
-  height: 400px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 10px;
+  flex: 1;
 }
 
 
@@ -352,16 +529,17 @@ body {
 }
 /* ============= FOOTER =============== */
 
-.footer{
-
+.footer {
+  flex-shrink: 0;
   background-color: black;
   color: white;
-  padding: 24px 42px 16px;  
+  padding: 24px 42px 16px;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 
 .footer p{
   font-style: normal;
@@ -571,9 +749,11 @@ body {
 }
 
 .pageWrapper {
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 94vh;
+  overflow: hidden; 
 }
 .searchResults {
   flex: 1 0 auto;  
@@ -613,3 +793,87 @@ body {
 .searchResults h2 .h2-result {
   color: #ffffff;
 }
+
+/* ===================== */
+/* ===== RESPONSIVO ===== */
+/* ===================== */
+
+/* 
+  1) Em resoluções menores que 1024px:
+     - Deixa a searchbar ficar mais estreita (80% do contêiner).
+     - Posiciona o botão de busca logo abaixo da searchbar.
+     - Deixa os flashcards ocuparem 45% da largura (2 por linha).
+*/
+@media (max-width: 1024px) {
+  .section_search {
+    padding-top: 200px; 
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .logo-pos {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .searchbar {
+    width: 80%;
+    max-width: 600px;
+  }
+  .button_search {
+    margin-left: 0;
+    margin-top: 12px;
+  }
+
+  .flashcard {
+    width: 45%;
+    margin: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section_search {
+    padding-top: 150px;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .logo-pos {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+
+  .searchbar {
+    width: 100%;
+    max-width: none;
+  }
+
+
+  .button_search {
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+  }
+
+  .flashcard {
+    width: 100%;
+    margin: 8px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .section_search {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .searchbar {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+  .button_search {
+    padding: 10px 0;
+  }
+}
+
+

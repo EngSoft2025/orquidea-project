@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import FlashCard from "../components/ui/FlashCard";
 
 const Index = () => (
-  <div>
+  <div className="pageWrapper">
     <section className="section_search">
       <div className="logo-pos">
         <img src="/logo.png" alt="Logo" className="logo_img" />
