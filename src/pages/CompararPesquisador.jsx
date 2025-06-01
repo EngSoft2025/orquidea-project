@@ -3,7 +3,6 @@ import { useSearchParams } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import GraficosComparacao from "../components/ui/GraficosComparacao";
-import MapaAfiliacoes from "../components/ui/MapaAfiliacoes";
 
 const fetchPesquisador = async (orcidID) => {
   try {
