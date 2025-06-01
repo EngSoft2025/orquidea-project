@@ -6,7 +6,7 @@ import cards from "../../public/cards";
 import FlashCard from "../components/ui/FlashCard";
 
 const Index = () => (
-  <div>
+  <div className="pageWrapper">
     <section className="section_search">
       <div className="logo-pos">
         <img src="/logo.png" alt="Logo" className="logo_img" />
