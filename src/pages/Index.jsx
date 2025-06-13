@@ -4,6 +4,7 @@ import Footer from "../components/layout/Footer";
 import SearchBar from "../components/ui/SearchBar";
 import cards from "../../public/cards";
 import FlashCard from "../components/ui/FlashCard";
+import { Link } from "react-router-dom";
 import Typed from "typed.js";
 
 const Index = () => {
@@ -38,7 +39,17 @@ const Index = () => {
 
       <section className="section_comp">
         {cards.map((card, i) => (
-          <FlashCard key={i} icon={card.icon} title={card.title} text={card.text} />
+          <Link
+            key={i}
+            to={`/${card.title.toLowerCase().replace(/\s+/g, '-')}`}
+            className="card-link"
+          >
+            <FlashCard
+              icon={card.icon}
+              title={card.title}
+              text={card.text}
+            />
+          </Link>
         ))}
       </section>
 
