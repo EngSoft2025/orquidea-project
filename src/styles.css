@@ -271,7 +271,7 @@ body {
   position: relative;
   padding-top: 300px; 
   background: linear-gradient(180deg, #15202B 15%, #000000 100%);
-  height: 400px;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -357,7 +357,6 @@ body {
 
 
 @media (max-height: 700px) {
-  .section_comp { margin-top: -60px; }
 }
 
 .flashcard { /* versao colapsada dos itens interativos */
@@ -905,7 +904,6 @@ body {
 }
  
 @media (max-height: 700px) {
-  .section_comp { margin-top: -60px; }
 }
  
 .flashcard { /* versao colapsada dos itens interativos */
