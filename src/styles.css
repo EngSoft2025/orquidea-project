@@ -271,7 +271,7 @@ body {
   position: relative;
   padding-top: 300px; 
   background: linear-gradient(180deg, #15202B 15%, #000000 100%);
-  height: 300px;
+  min-height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -283,8 +283,8 @@ body {
 
 .logo-pos {
   position: absolute;
-  top: 100px;
-  left: calc(52% - 300px); 
+  top: calc(142% - 100%);;
+  left: calc(52% - 300px);
   display: flex;
   align-items: center;
   z-index: 20;
@@ -357,7 +357,6 @@ body {
 
 
 @media (max-height: 700px) {
-  .section_comp { margin-top: -60px; }
 }
 
 .flashcard { /* versao colapsada dos itens interativos */
@@ -514,6 +513,17 @@ body {
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 16px;
+}
+
+.keyword-box {
+  background: linear-gradient(150deg, #B97A2F 0%, #92531F 90%);
+  color: #15202B;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  display: inline-block;
+  transition: background 0.3s ease;
 }
 /* ============= FOOTER =============== */
 
@@ -737,11 +747,10 @@ body {
 }
 
 .pageWrapper {
-  flex: 1 0 auto;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  min-height: 94vh;
-  overflow: hidden; 
+  justify-content: space-between;
 }
 .searchResults {
   flex: 1 0 auto;  
@@ -780,6 +789,16 @@ body {
 
 .searchResults h2 .h2-result {
   color: #ffffff;
+}
+
+.typed-text-container {
+  font-size: 40px;
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 200;
+  display: block;
+  margin-bottom: 30px;
+  margin-left: calc(12% - 100px);
 }
 
 /* ===================== */
@@ -824,6 +843,7 @@ body {
     padding-top: 150px;
     padding-left: 8px;
     padding-right: 8px;
+    padding-bottom: 100px;
   }
 
   .logo-pos {
@@ -862,6 +882,51 @@ body {
   .button_search {
     padding: 10px 0;
   }
+}
+
+/* ============ SESSÃO FLASHCARDS ===============*/
+ 
+.section_comp {
+  background-color: #000000;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap; 
+  padding: 20px; 
+}
+ 
+.card-link {
+  text-decoration: none;  /* Remove o sublinhado do link */
+}
+ 
+@media (max-height: 700px) {
+}
+ 
+.flashcard { /* versao colapsada dos itens interativos */
+  background: linear-gradient(180deg, #15202B 0%, #15202B 25%, #000000 100%);
+  width: 240px;
+  height: 180px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  gap: 10px;
+  border-radius: 15px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  transition: 
+    height 0.4s ease, 
+    box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.comparar {
+  width: 600px;
 }
 
 /* ========== SESSÃO ARTIGOS EM ALTA ==============*/
@@ -1007,51 +1072,4 @@ body {
 
 .tabela-animada {
   animation: fadeInSlideUp 0.6s ease-out;
-}
-
-
-/* ============ SESSÃO FLASHCARDS ===============*/
- 
-.section_comp {
-  background-color: #000000;
-  width: 100%;
-  height: 400px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap; 
-  padding: 20px; 
-}
- 
-.card-link {
-  text-decoration: none;  /* Remove o sublinhado do link */
-}
- 
-@media (max-height: 700px) {
-  .section_comp { margin-top: -60px; }
-}
- 
-.flashcard { /* versao colapsada dos itens interativos */
-  background: linear-gradient(180deg, #15202B 0%, #15202B 25%, #000000 100%);
-  width: 240px;
-  height: 180px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 10px;
-  gap: 10px;
-  border-radius: 15px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  transition: 
-    height 0.4s ease, 
-    box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.comparar {
-  width: 600px;
 }
