@@ -150,7 +150,7 @@ const CardComparacao = ({ pesquisador, index, onAdd, onRemove }) => {
 
 
   return (
-    <div className="researchCard compararCard">
+    <div className="researchCard comparar">
   {pesquisador ? (
     pesquisador.erro ? (
       <p style={{ color: "red" }}>{pesquisador.erro}</p>
