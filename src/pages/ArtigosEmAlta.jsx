@@ -160,6 +160,7 @@ const ArtigosEmAlta = () => {
                     <tr>
                       <th>#</th>
                       <th>Título</th>
+                      <th>Publicado em</th>
                       <th>Ano</th>
                       <th>Citações (3 anos)</th>
                     </tr>
@@ -169,6 +170,7 @@ const ArtigosEmAlta = () => {
                       <tr key={i}>
                         <td>{i + 1}</td>
                         <td>{a.display_name}</td>
+                        <td>{a.venue}</td>
                         <td>{a.publication_year}</td>
                         <td>{a.citacoes3anos}</td>
                       </tr>
