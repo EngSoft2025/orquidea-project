@@ -515,17 +515,6 @@ body {
   gap: 8px;
   margin-top: 16px;
 }
-
-.keyword-box {
-  background: linear-gradient(150deg, #B97A2F 0%, #92531F 90%);
-  color: #15202B;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: bold;
-  display: inline-block;
-  transition: background 0.3s ease;
-}
 /* ============= FOOTER =============== */
 
 .footer {
@@ -874,6 +863,152 @@ body {
     padding: 10px 0;
   }
 }
+
+/* ========== SESSÃO ARTIGOS EM ALTA ==============*/
+
+.busca-container {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+}
+
+.titulo-com-icone {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.icone-titulo {
+  font-size: 2rem;
+}
+
+.titulo-gradiente {
+  font-size: 2.4rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #f2b705, #ff8a00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.carrossel-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.carrossel-container {
+  width: 100%;
+  max-width: 700px;
+  overflow: hidden;
+}
+
+.keyword-box {
+  margin: 0 8px;
+  color: #15202B;
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-size: 14px;
+  background: linear-gradient(150deg, #B97A2F 0%, #92531F 90%);
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: nowrap;
+  font-size: 0.95rem;
+  display: inline-block;
+  transition: background 0.3s ease;
+}
+
+.keyword-box:hover {
+  background-color: #ddd;
+}
+
+.voltar-container {
+  text-align: right;
+  margin: 2rem 0;
+}
+
+.searchResults {
+  width: 100%;
+  max-width: 1200px;
+}
+
+.titulo-resultados {
+  margin-bottom: 1rem;
+}
+
+.subtitulo-explicativo {
+  display: block;
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+  margin-top: -1rem;
+  margin-bottom: 1.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.8;
+}
+
+.erro {
+  color: red;
+}
+
+.carregando {
+  font-weight: bold;
+}
+
+.searchbar-grande {
+  width: 550px;
+}
+
+.carrossel-fade-mask {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+
+  /* Fade nas laterais */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 90%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 10%,
+    black 90%,
+    transparent 100%
+  );
+}
+
+/* Animação */
+@keyframes fadeInSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tabela-animada {
+  animation: fadeInSlideUp 0.6s ease-out;
+}
+
 
 /* ============ SESSÃO FLASHCARDS ===============*/
  
