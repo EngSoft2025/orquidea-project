@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import React from "react";  
 import Marquee from "react-fast-marquee";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
@@ -14,8 +17,19 @@ const ArtigosEmAlta = () => {
   const [artigos, setArtigos] = useState([]);
   const [erro, setErro] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [modoBusca, setModoBusca] = useState(true);
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const hasKeyword = params.get("keyword") != null;
+  const [modoBusca, setModoBusca] = useState(!hasKeyword);
   const [totalArtigos, setTotalArtigos] = useState(0);
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const kw = params.get("keyword");
+    if (kw) {
+      setInput(kw);
+      buscarArtigos(kw);
+    }
+  }, [location.search]);
 
 
   const buscarArtigos = async (keyword = input) => {
@@ -30,26 +44,31 @@ const ArtigosEmAlta = () => {
       dataInicio.setFullYear(dataInicio.getFullYear() - 3);
       const dataInicioStr = dataInicio.toISOString().split("T")[0];
 
-      const conceptRes = await fetch(`https://api.openalex.org/concepts?search=${keyword}&per_page=1`);
-      const conceptData = await conceptRes.json();
+      // busca conceito, mas não aborta se não achar
+    const conceptRes = await fetch(
+      `https://api.openalex.org/concepts?search=${encodeURIComponent(keyword)}&per_page=1`
+    );
+    const conceptData = await conceptRes.json();
 
-      if (!conceptData.results.length) {
-        setErro("Conceito não encontrado.");
-        return;
-      }
-
+    // monta URLs de fetch com fallback
+    let worksUrl;
+    let countUrl;
+    if (conceptData.results && conceptData.results.length > 0) {
       const conceptId = conceptData.results[0].id;
+      worksUrl = `https://api.openalex.org/works?filter=concepts.id:${conceptId},from_publication_date:${dataInicioStr}&per_page=100&sort=cited_by_count:desc`;
+      countUrl = `https://api.openalex.org/works?filter=concepts.id:${conceptId},from_publication_date:${dataInicioStr}`;
+    } else {
+      // full-text search se não houver concept
+      worksUrl = `https://api.openalex.org/works?search=${encodeURIComponent(keyword)}&filter=from_publication_date:${dataInicioStr}&per_page=100&sort=cited_by_count:desc`;
+      countUrl = `https://api.openalex.org/works?search=${encodeURIComponent(keyword)}&filter=from_publication_date:${dataInicioStr}`;
+    }
 
-      const worksRes = await fetch(
-        `https://api.openalex.org/works?filter=concepts.id:${conceptId},from_publication_date:${dataInicioStr}&per_page=100&sort=cited_by_count:desc`
-      );
-      const worksData = await worksRes.json();
+    // executa ambos os fetches
+    const worksRes = await fetch(worksUrl);
+    const worksData = await worksRes.json();
 
-      // Query só para contar
-      const countRes = await fetch(
-        `https://api.openalex.org/works?filter=concepts.id:${conceptId},from_publication_date:${dataInicioStr}`
-      );
-      const countData = await countRes.json();
+    const countRes = await fetch(countUrl);
+    const countData = await countRes.json();
 
       const works = worksData.results.map((w) => {
         const counts = Object.fromEntries((w.counts_by_year || []).map(c => [c.year, c.cited_by_count]));
@@ -58,7 +77,16 @@ const ArtigosEmAlta = () => {
         const fieldCitationRatio = w?.metrics?.field_citation_ratio ?? "N/A";
         const meanCitedness = w?.metrics?.["2yr_mean_citedness"] ?? "N/A";
 
-        return { ...w, citacoes3anos, venue, fieldCitationRatio, meanCitedness, meanCitedness };
+        return {
+          ...w,
+          citacoes3anos,
+          venue,
+          fieldCitationRatio,
+          meanCitedness,
+          url:
+            w.primary_location?.url ||
+            (w.ids?.doi ? `https://doi.org/${w.ids.doi}` : w.id),
+        };
       });
 
       const ordenados = works.sort((a, b) => b.citacoes3anos - a.citacoes3anos);
@@ -169,7 +197,16 @@ const ArtigosEmAlta = () => {
                     {artigos.slice(0, 10).map((a, i) => (
                       <tr key={i}>
                         <td>{i + 1}</td>
-                        <td>{a.display_name}</td>
+                        <td>
+                          <a
+                            href={a.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="link-artigo"
+                          >
+                            {a.display_name}
+                          </a>
+                        </td>
                         <td>{a.venue}</td>
                         <td>{a.publication_year}</td>
                         <td>{a.citacoes3anos}</td>

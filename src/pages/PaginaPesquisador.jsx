@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import SearchBar from "../components/ui/SearchBar";
@@ -33,9 +34,13 @@ const PaginaPesquisador = () => {
         const lista =
           wrk.group?.map(g => {
             const s = g["work-summary"]?.[0];
+            const externalIds = s["external-ids"]?.["external-id"] || [];
+            const doiEntry = externalIds.find(e => e["external-id-type"]?.toLowerCase() === "doi");
+            const url = doiEntry?.["external-id-url"]?.value || (doiEntry ? `https://doi.org/${doiEntry["external-id-value"]}` : undefined);
             return {
               title: s?.title?.title?.value,
               year: s?.["publication-date"]?.year?.value,
+              url,
             };
           }) || [];
         setWorks(
@@ -66,12 +71,18 @@ const PaginaPesquisador = () => {
                 <strong>Total de publicações:</strong> {works.length}
               </p>
               {dados.person.keywords?.keyword?.length > 0 && (
-                <div className="keywords-container">
-                  {dados.person.keywords.keyword.map((kw, i) => (
-                    <span key={i} className="keyword-box">{kw.content}</span>
-                  ))}
-                </div>
-              )}
+              <div className="keywords-container">
+                {dados.person.keywords.keyword.map((kw, i) => (
+                  <Link
+                    key={i}
+                    to={`/artigos-em-alta?keyword=${encodeURIComponent(kw.content)}`}
+                    className="keyword-box"
+                  >
+                    {kw.content}
+                  </Link>
+                ))}
+              </div>
+            )}
             </>
           ) : (
             <p>Carregando dados…</p>
@@ -83,7 +94,14 @@ const PaginaPesquisador = () => {
           <ul>
             {works.slice(0, 4).map((w, i) => (
               <li key={i}>
-                {w.title} {w.year && `(${w.year})`}
+                <a
+                  href={w.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-artigo"
+                >
+                  {w.title} {w.year && `(${w.year})`}
+                </a>
               </li>
             ))}
           </ul>
