@@ -516,6 +516,7 @@ body {
 }
 
 .keyword-box {
+  text-decoration: none;
   background: linear-gradient(150deg, #B97A2F 0%, #92531F 90%);
   color: #15202B;
   padding: 4px 8px;
@@ -594,6 +595,13 @@ body {
   cursor: pointer;
   font-weight: bold;
   padding: 0;
+}
+
+.link-artigo {
+  text-decoration: none;
+}
+.link-artigo:hover {
+  text-decoration: underline;
 }
 
 /* ====== Botão “Ver mais” ====== */
