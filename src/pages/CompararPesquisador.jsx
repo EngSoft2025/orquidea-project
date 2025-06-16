@@ -303,7 +303,7 @@ const CompararPesquisador = () => {
       : [];
 
   return (
-    <div>
+    <div className="comparePageWrapper">
       <Navbar showSearchBar extraClass="navbar-pesquisador" />
       <div className="compareTitle">
         <h1 className="h2-res">Comparar Pesquisadores</h1>

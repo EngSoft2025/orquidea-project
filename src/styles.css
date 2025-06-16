@@ -15,6 +15,7 @@ html, body {
   display: flex;
   justify-content: center;
   padding: 2rem;
+  flex-grow: 1;
 }
 
 .searchbarComp {
@@ -41,8 +42,7 @@ html, body {
 .compareContainer {
   display: flex;
   justify-content: center;
-  align-items: center; 
-  align-items: stretch;
+  align-items: flex-start;
   gap: 2rem;
   width: 100%;
   max-width: 1400px;
@@ -79,6 +79,15 @@ html, body {
   box-sizing: border-box;
   cursor: default;
   user-select: none;
+}
+.comparePageWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.comparePageWrapper .footer {
+  margin-top: auto;
 }
 
 .addResearcher {
@@ -268,8 +277,6 @@ body {
 
 
 .section_search {
-  position: relative;
-  padding-top: 300px; 
   background: linear-gradient(180deg, #15202B 15%, #000000 100%);
   min-height: 400px;
   display: flex;
@@ -277,17 +284,17 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-bottom: flex;
+  padding: 40px 20px; 
+  flex-grow: 1;
 }
 
 
 .logo-pos {
-  position: absolute;
-  top: calc(142% - 100%);;
-  left: calc(52% - 300px);
   display: flex;
   align-items: center;
-  z-index: 20;
+  margin-top: 100px;
+  margin-right: calc(12% - 100px);
+  gap: 10px;
 }
 
 
@@ -349,9 +356,9 @@ body {
   width: 100%;
   display: flex;
   flex-direction: row;
+  gap: 10%;
   justify-content: center;
   align-items: center;
-  gap: 10px;
   flex: 1;
 }
 
@@ -418,9 +425,8 @@ body {
   min-height: 100vh;
   width: 100%;
   display: flex;
-  flex-direction:row;
-  padding-left: 40px;
-  padding-top: 40px;
+  flex-direction: row;
+  padding: 40px;
   gap: 20px;
   align-items: flex-start;
   flex-wrap: wrap;
@@ -464,7 +470,6 @@ body {
   color: #ffffff;
   padding: 45px;
   width: 65%;
-  margin-left: 20px;
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255,255,255,0.08);
@@ -525,6 +530,54 @@ body {
   font-weight: bold;
   display: inline-block;
   transition: background 0.3s ease;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.researchCard .keyword-box {
+  white-space: normal;
+  height: auto;
+  line-height: 1.4;
+}
+
+@media (max-width: 992px) {
+  .researchSection {
+    flex-direction: column; 
+    align-items: center;
+    padding: 20px;
+  }
+
+  .researchCard,
+  .researchInfo {
+    width: 100%;
+    max-width: 700px;
+  }
+}
+
+@media (max-width: 576px) {
+  .researchCard,
+  .researchInfo {
+    padding: 20px;
+  }
+  
+  .researchCard img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .researchName {
+    font-size: 20px;
+  }
+
+  .researchInfo h2 {
+    font-size: 22px;
+  }
+
+  .keyword-box {
+    font-size: 13px;
+    padding: 3px 7px;
+  }
 }
 /* ============= FOOTER =============== */
 
@@ -583,13 +636,21 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 .tabela-resultados tbody tr { animation: fadeSlideIn 0.4s ease-in; }
+.tabela-resultados tbody td:first-child {
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
 
+.tabela-resultados tbody td:last-child {
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
 .link-orcid {
   background-image: linear-gradient(90deg, #FFD700 0%, #B8860B 100%);
   -webkit-background-clip: text;
           background-clip: text;
   color: transparent;
-  text-decoration: underline;
+  text-decoration: none;
   background-clip: text;
   border: none;
   cursor: pointer;
@@ -599,9 +660,10 @@ body {
 
 .link-artigo {
   text-decoration: none;
+  color: #ffffff;
 }
 .link-artigo:hover {
-  text-decoration: underline;
+  color: goldenrod;
 }
 
 /* ====== Botão “Ver mais” ====== */
@@ -805,90 +867,64 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 200;
   display: block;
-  margin-bottom: 30px;
-  margin-left: calc(12% - 100px);
+  /* margin-right: calc(12% - 100px); */
+  margin-bottom: 20px;
 }
 
 /* ===================== */
 /* ===== RESPONSIVO ===== */
 /* ===================== */
 
-/* 
-  1) Em resoluções menores que 1024px:
-     - Deixa a searchbar ficar mais estreita (80% do contêiner).
-     - Posiciona o botão de busca logo abaixo da searchbar.
-     - Deixa os flashcards ocuparem 45% da largura (2 por linha).
-*/
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
   .section_search {
-    padding-top: 200px; 
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 60px 20px;
+    gap: 1.5rem;
   }
 
   .logo-pos {
     flex-direction: column;
+    margin-right: 5px;
     gap: 8px;
   }
 
-  .searchbar {
-    width: 80%;
-    max-width: 600px;
+  .texto_orquidea {
+    font-size: 40px;
   }
+
+  .typed-text-container {
+    font-size: 32px;
+  }
+
+  .searchbar {
+    width: 90%;
+  }
+
   .button_search {
     margin-left: 0;
     margin-top: 12px;
   }
 
   .flashcard {
-    width: 45%;
-    margin: 8px;
-  }
-}
-
-@media (max-width: 768px) {
-  .section_search {
-    padding-top: 150px;
-    padding-left: 8px;
-    padding-right: 8px;
-    padding-bottom: 100px;
-  }
-
-  .logo-pos {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-
-  .searchbar {
-    width: 100%;
-    max-width: none;
-  }
-
-
-  .button_search {
-    width: 100%;
-    max-width: none;
-    margin-left: 0;
-  }
-
-  .flashcard {
-    width: 100%;
+    width: 80%;
     margin: 8px 0;
   }
 }
 
 @media (max-width: 480px) {
-  .section_search {
-    padding-left: 4px;
-    padding-right: 4px;
+  .texto_orquidea {
+    font-size: 32px;
   }
+
+  .typed-text-container {
+    font-size: 24px; 
+  }
+  
   .searchbar {
-    padding-left: 8px;
-    padding-right: 8px;
+    width: 100%;
   }
+
   .button_search {
-    padding: 10px 0;
+    width: 90%;
   }
 }
 
@@ -900,9 +936,9 @@ body {
   height: 400px;
   display: flex;
   flex-direction: row;
+  gap: 1%;
   justify-content: center;
   align-items: center;
-  gap: 10px;
   flex-wrap: wrap; 
   padding: 20px; 
 }
@@ -916,7 +952,7 @@ body {
  
 .flashcard { /* versao colapsada dos itens interativos */
   background: linear-gradient(180deg, #15202B 0%, #15202B 25%, #000000 100%);
-  width: 240px;
+  width: 350px;
   height: 180px;
   overflow: hidden;
   display: flex;
@@ -1066,6 +1102,15 @@ body {
   );
 }
 
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-container .footer {
+  margin-top: auto;
+}
 /* Animação */
 @keyframes fadeInSlideUp {
   from {

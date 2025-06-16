@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import SearchBar from "../components/ui/SearchBar";
-import cards from "../../public/cards";
 import FlashCard from "../components/ui/FlashCard";
 import { Link } from "react-router-dom";
 import Typed from "typed.js";
@@ -37,21 +36,22 @@ const Index = () => {
         <SearchBar />
       </section>
 
-      <section className="section_comp">
-        {cards.map((card, i) => (
-          <Link
-            key={i}
-            to={`/${card.title.toLowerCase().replace(/\s+/g, '-')}`}
-            className="card-link"
-          >
-            <FlashCard
-              icon={card.icon}
-              title={card.title}
-              text={card.text}
-            />
-          </Link>
-        ))}
-      </section>
+    <section className="section_comp">
+      <Link to="/artigos-em-alta" className="card-link">
+        <FlashCard
+          icon="/graph.png"
+          title="Artigos em Alta"
+          text="Explore os artigos mais citados nos últimos 3 anos."
+        />
+      </Link>
+      <Link to="/comparar" className="card-link">
+        <FlashCard
+          icon="/people.png"
+          title="Comparar Pesquisadores"
+          text="Compare métricas e publicações de pesquisadores."
+        />
+      </Link>
+    </section>
 
       <Footer />
     </div>

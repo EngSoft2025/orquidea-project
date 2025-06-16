@@ -103,8 +103,8 @@ const ArtigosEmAlta = () => {
   };
 
   return (
-    <div>
-      <Navbar showSearchBar={false} extraClass="navbar-pesquisador" />
+    <div className="page-container">
+      <Navbar showSearchBar extraClass="navbar-pesquisador" />
 
       {modoBusca ? (
         <div className="busca-container">
