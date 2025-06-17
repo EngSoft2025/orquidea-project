@@ -36,7 +36,7 @@ const PaginaPesquisaNome = () => {
 
   const mostrarTermosBusca = () => {
     if (!nomeBusca) return "";
-    if (!nomeBusca.includes(":")) return `: "${nomeBusca}"`;
+    if (!nomeBusca.includes(":")) return `: "${nomeBusca}"`; // Simples nome digitado
 
     const termos = nomeBusca.split(" AND ").map(term => {
       const [campo, valor] = term.split(":");
