@@ -431,9 +431,6 @@ body {
   align-items: flex-start;
   flex-wrap: wrap;
   justify-content: center;
-
-  background: linear-gradient(180deg, #15202B 15%, #000000 100%);
-  min-height: 100vh;
 }
 
 .researchCard {
