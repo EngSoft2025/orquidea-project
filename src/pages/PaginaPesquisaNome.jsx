@@ -35,6 +35,7 @@ const PaginaPesquisaNome = () => {
   };
 
   const mostrarTermosBusca = () => {
+    if (!nomeBusca) return "";
     if (!nomeBusca.includes(":")) return `: "${nomeBusca}"`; // Simples nome digitado
 
     const termos = nomeBusca.split(" AND ").map(term => {
@@ -67,15 +68,19 @@ const PaginaPesquisaNome = () => {
       return;
     }
 
-    // então, fiz isso para tentar acelerar a busca quando você sabe o nome exato
-    const terms = nomeBusca.trim().split(/\s+/);
-    const queryParam = terms.length >= 2
-      ? `given-names:${terms[0]} AND family-name:${terms[terms.length-1]}`
-      : nomeBusca;
-
     const buscarPorNome = async () => {
       setCarregando(true);
       try {
+        let queryParam;
+        if (nomeBusca.includes(":")) {
+          queryParam = nomeBusca;
+        } else {
+          const terms = nomeBusca.trim().split(/\s+/);
+          queryParam = terms.length >= 2
+            ? `given-names:${terms[0]} AND family-name:${terms[terms.length - 1]}`
+            : nomeBusca;
+        }
+
         const res = await fetch(`https://pub.orcid.org/v3.0/expanded-search/?q=${encodeURIComponent(queryParam)}`, {
           headers: { Accept: "application/json" }
         });
@@ -159,7 +164,7 @@ const PaginaPesquisaNome = () => {
       <section className="searchResults">
 
         <h2>
-          <span className="h2-res">Resultados para: </span>
+          <span className="h2-res">Resultados para </span>
           <span className="h2-result">{mostrarTermosBusca().replace(/^:\s*/, '')}</span>
         </h2>
 

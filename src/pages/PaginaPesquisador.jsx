@@ -1,117 +1,162 @@
-import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
+import { useLocation, Link } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
-import SearchBar from "../components/ui/SearchBar";
 
 const PaginaPesquisador = () => {
   const [dados, setDados] = useState(null);
   const [works, setWorks] = useState([]);
+  const [institutions, setInstitutions] = useState([]);
+  const [isCopied, setIsCopied] = useState(false);
   const location = useLocation();
   const orcidID = new URLSearchParams(location.search).get("orcid");
 
+  const leftCardRef = useRef(null);
+  const rightCardRef = useRef(null);
+
+  const handleCopyOrcid = () => {
+    if (!orcidID) return;
+    navigator.clipboard.writeText(orcidID).then(
+      () => {
+        setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 2000);
+      },
+      (err) => {
+        console.error("Falha ao copiar o ORCID ID: ", err);
+      }
+    );
+  };
+
   useEffect(() => {
     if (!orcidID) return;
-
     (async () => {
       try {
         const [rec, wrk] = await Promise.all([
           fetch(`https://pub.orcid.org/v3.0/${orcidID}/record`, {
             headers: { Accept: "application/json" },
-          }).then(r => r.json()),
+          }).then((r) => r.json()),
           fetch(`https://pub.orcid.org/v3.0/${orcidID}/works`, {
             headers: { Accept: "application/json" },
-          }).then(r => r.json()),
+          }).then((r) => r.json()),
         ]);
-
-        const name = rec.person.name;
-        // setDados({
-        //   fullName: `${name["given-names"]?.value} ${name["family-name"]?.value}`,
-        // });
         setDados(rec);
-
-        const lista =
-          wrk.group?.map(g => {
-            const s = g["work-summary"]?.[0];
-            const externalIds = s["external-ids"]?.["external-id"] || [];
-            const doiEntry = externalIds.find(e => e["external-id-type"]?.toLowerCase() === "doi");
-            const url = doiEntry?.["external-id-url"]?.value || (doiEntry ? `https://doi.org/${doiEntry["external-id-value"]}` : undefined);
-            return {
-              title: s?.title?.title?.value,
-              year: s?.["publication-date"]?.year?.value,
-              url,
-            };
-          }) || [];
-        setWorks(
-          lista.sort((a, b) => (b.year || 0) - (a.year || 0))
-        );
+        const lista = wrk.group?.map((g) => {
+          const s = g["work-summary"]?.[0];
+          const url = s["external-ids"]?.["external-id"]?.find(e => e["external-id-type"] === "doi")?.["external-id-url"]?.value;
+          return {
+            title: s?.title?.title?.value,
+            year: s?.["publication-date"]?.year?.value,
+            url,
+          };
+        }) || [];
+        setWorks(lista.sort((a, b) => (b.year || 0) - (a.year || 0)));
+        const detailedAffiliations = rec?.["activities-summary"]?.employments?.["employment-summary"];
+        if (detailedAffiliations && detailedAffiliations.length > 0) {
+          const formatted = detailedAffiliations.map(item => ({
+            name: item.organization.name,
+            date: `${item["start-date"]?.year?.value || ""} - ${item["end-date"]?.year?.value || "Presente"}`
+          }));
+          setInstitutions(formatted);
+        } else {
+          const searchRes = await fetch(`https://pub.orcid.org/v3.0/expanded-search/?q=orcid:${orcidID}`, {
+            headers: { Accept: "application/json" }
+          });
+          const searchData = await searchRes.json();
+          const institutionNames = searchData?.["expanded-result"]?.[0]?.["institution-name"];
+          if (institutionNames && institutionNames.length > 0) {
+            const formatted = institutionNames.map(name => ({ name: name, date: null }));
+            setInstitutions(formatted);
+          }
+        }
       } catch (err) {
         console.error(err);
       }
     })();
   }, [orcidID]);
 
-  return (
-    <div>
-      <Navbar showSearchBar extraClass="navbar-pesquisador" />
+  useLayoutEffect(() => {
+    const setCardsHeight = () => {
+      if (leftCardRef.current && rightCardRef.current) {
+        rightCardRef.current.style.height = 'auto';
+        requestAnimationFrame(() => {
+          if (leftCardRef.current && rightCardRef.current) {
+            const leftHeight = leftCardRef.current.offsetHeight;
+            rightCardRef.current.style.height = `${leftHeight}px`;
+          }
+        });
+      }
+    };
+    setCardsHeight();
+    window.addEventListener('resize', setCardsHeight);
+    return () => {
+      window.removeEventListener('resize', setCardsHeight);
+    };
+  }, [dados, works, institutions]);
 
+  return (
+    <div className="page-container">
+      <Navbar showSearchBar extraClass="navbar-pesquisador" />
       <section className="researchSection">
-        <div className="researchCard">
+        <div className="researchCard" ref={leftCardRef}>
           {dados ? (
             <>
               <img src="/user-research.png" alt="avatar" />
               <p className="researchName">
                 {`${dados.person.name["given-names"].value} ${dados.person.name["family-name"].value}`}
               </p>
-              <p>
-                <strong>ORCID ID:</strong> {orcidID}
-              </p>
-              <p>
-                <strong>Total de publicações:</strong> {works.length}
-              </p>
-              {dados.person.keywords?.keyword?.length > 0 && (
-              <div className="keywords-container">
-                {dados.person.keywords.keyword.map((kw, i) => (
-                  <Link
-                    key={i}
-                    to={`/artigos-em-alta?keyword=${encodeURIComponent(kw.content)}`}
-                    className="keyword-box"
-                  >
-                    {kw.content}
-                  </Link>
-                ))}
+              <div className="orcid-container">
+                <p><strong>ORCID ID:</strong> {orcidID}</p>
+                <button onClick={handleCopyOrcid} className="copy-button" title="Copiar ORCID ID">
+                  <img src="/clipb.png" alt="Copiar" />
+                </button>
+                {isCopied && <span className="copy-feedback">✔</span>}
               </div>
-            )}
+              <p><strong>Total de publicações:</strong> {works.length}</p>
+              {dados.person.keywords?.keyword?.length > 0 && (
+                <div className="keywords-container">
+                  {dados.person.keywords.keyword.map((kw, i) => (
+                    <Link key={i} to={`/artigos-em-alta?keyword=${encodeURIComponent(kw.content)}`} className="keyword-box">
+                      {kw.content}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </>
           ) : (
             <p>Carregando dados…</p>
           )}
         </div>
 
-        <div className="researchInfo">
+        <div className="researchInfo" ref={rightCardRef}>
           <h2>Últimos artigos publicados</h2>
           <ul>
-            {works.slice(0, 4).map((w, i) => (
+            {works.slice(0, 10).map((w, i) => (
               <li key={i}>
-                <a
-                  href={w.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link-artigo"
-                >
+                <a href={w.url} target="_blank" rel="noopener noreferrer" className="link-artigo">
                   {w.title} {w.year && `(${w.year})`}
                 </a>
               </li>
             ))}
           </ul>
         </div>
-      </section>
 
+        {institutions.length > 0 && (
+          <div className="institutionsCard">
+            <h2>Instituições</h2>
+            <ul>
+              {institutions.map((item, index) => (
+                <li key={index}>
+                  <p className="institution-name">{item.name}</p>
+                  {item.date && <p className="institution-date">{item.date}</p>}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </section>
       <Footer />
     </div>
   );
 };
 
 export default PaginaPesquisador;
-

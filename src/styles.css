@@ -431,6 +431,9 @@ body {
   align-items: flex-start;
   flex-wrap: wrap;
   justify-content: center;
+
+  background: linear-gradient(180deg, #15202B 15%, #000000 100%);
+  min-height: 100vh;
 }
 
 .researchCard {
@@ -462,7 +465,7 @@ body {
 .researchName {
   text-align: center;
   font-size: 24px;
-  margin-bottom: 24px;  /* espaço antes do ORCID */
+  margin-bottom: 24px;
 }
 
 .researchInfo {
@@ -473,23 +476,65 @@ body {
   border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
 }
 
-.researchInfo p {
+.researchInfo h2 {
+  background: linear-gradient(90deg, #FFD700 0%, #B8860B 25%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
 
-  padding-top: 10px;
-  padding-bottom: 10px;
-
+.researchInfo ul {
+  flex-grow: 1;
+  overflow-y: auto;
+  min-height: 0;
+  list-style: none;
+  padding: 0 1rem 0 0; 
 }
 
 .researchInfo li {
-  padding-top: 15px;
+  margin-bottom: 1rem;
+  border-radius: 0 8px 8px 0;
+  background-color: #15202B;
+  border-left: 4px solid #B8860B;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
 }
 
-.researchCard p,
-.researchInfo p,
-.researchInfo li {
+.researchInfo li:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.researchInfo li a.link-artigo {
+  display: block;
+  padding: 1rem;
   color: #ffffff;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: 500;
+}
+
+.researchInfo li a.link-artigo:hover {
+  color: #FFD700;
+}
+
+.researchInfo ul::-webkit-scrollbar {
+  width: 8px;
+}
+.researchInfo ul::-webkit-scrollbar-track {
+  background: transparent;
+}
+.researchInfo ul::-webkit-scrollbar-thumb {
+  background-color: #B8860B;
+  border-radius: 4px;
+  border: 2px solid #1E2A38;
 }
 /*
 .researchCard strong,
@@ -1126,3 +1171,112 @@ body {
 .tabela-animada {
   animation: fadeInSlideUp 0.6s ease-out;
 }
+/* ====== botão de copiar o ID orcid ====== */
+
+.orcid-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 15px;
+}
+
+.orcid-container p {
+  padding-top: 0;
+  white-space: nowrap;
+}
+
+.copy-section {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.copy-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.copy-button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.copy-button img {
+  width: 18px;
+  height: 18px;
+}
+
+.copy-feedback {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #FFD700;
+  animation: fadeIn 0.3s ease;
+  white-space: nowrap;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Adicione estas novas regras ao seu arquivo styles.css */
+
+.institutionsCard {
+  background: linear-gradient(180deg, #1E2A38 0%, #15202B 100%);
+  color: #ffffff;
+  padding: 45px;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-top: 20px;
+}
+
+.institutionsCard h2 {
+  background: linear-gradient(120deg, #FFD700 0%, #B8860B 15%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.institutionsCard ul {
+  list-style: none;
+  padding: 0;
+}
+
+.institutionsCard li {
+  background-color: #15202B;
+  border-left: 4px solid #B8860B;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0 8px 8px 0;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.institutionsCard li:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.institutionsCard .institution-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.institutionsCard .institution-date {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-top: 0.25rem;
+}
+
