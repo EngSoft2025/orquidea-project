@@ -121,7 +121,7 @@ Contribuições são bem-vindas! Por favor, faça um fork do repositório e envi
 Este projeto está licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
 ## <div id="acknowledgements"></div>Agradecimentos
-Gostaríamos de agradecer aos ..., pela sua orientação e apoio ao longo deste projeto.
+Gostaríamos de agradecer aos monitores da disciplina e ao professor Seiji Isotani, pela sua orientação e apoio ao longo deste projeto.
 
 ## 👥 Equipe
 
