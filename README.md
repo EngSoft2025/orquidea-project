@@ -16,9 +16,6 @@
   <a href="#agradecimentos">Agradecimentos</a>
 </p>
 
-<p align="center">
-[COLOCAR IMAGEM DO PROJETO]
-</p>
 
 <p align="center">
   <b>Orquidea</b> é uma plataforma web para consolidação e análise de dados acadêmicos, desenvolvida pela equipe Lattes Mas Não Morde. A proposta é oferecer uma experiência mais intuitiva, integrada e informativa em relação às soluções atuais, como o Currículo Lattes e o ORCID. O sistema centraliza perfis, citações e métricas de impacto científico a partir de múltiplas fontes, com foco em usabilidade, automação e apoio à gestão de produção acadêmica.
