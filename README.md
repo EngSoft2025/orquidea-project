@@ -17,8 +17,26 @@
 </p>
 
 <p align="center">
-[COLOCAR IMAGEM DO PROJETO]
+  <table>
+    <tr>
+      <td align="center">
+        <img width="600px" src="https://github.com/EngSoft2025/orquidea-project/blob/dbca4e64f82a96c9e68b7ed8c09286fc0558f08e/assets/home.png?raw=true">
+      </td>
+      <td align="center">
+        <img width="600px" src="https://github.com/EngSoft2025/orquidea-project/blob/dbca4e64f82a96c9e68b7ed8c09286fc0558f08e/assets/perfil.png?raw=true">
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
+        <img width="600px" src="https://github.com/EngSoft2025/orquidea-project/blob/dbca4e64f82a96c9e68b7ed8c09286fc0558f08e/assets/comparar.png?raw=true">
+      </td>
+      <td align="center">
+        <img width="600px" src="https://github.com/EngSoft2025/orquidea-project/blob/dbca4e64f82a96c9e68b7ed8c09286fc0558f08e/assets/ranking.png?raw=true">
+      </td>
+    </tr>
+  </table>
 </p>
+
 
 <p align="center">
   <b>Orquidea</b> é uma plataforma web para consolidação e análise de dados acadêmicos, desenvolvida pela equipe Lattes Mas Não Morde. A proposta é oferecer uma experiência mais intuitiva, integrada e informativa em relação às soluções atuais, como o Currículo Lattes e o ORCID. O sistema centraliza perfis, citações e métricas de impacto científico a partir de múltiplas fontes, com foco em usabilidade, automação e apoio à gestão de produção acadêmica.
