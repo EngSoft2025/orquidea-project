@@ -4,8 +4,11 @@ import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 import GraficosComparacao from "../components/ui/GraficosComparacao";
 
+
+/* Chamada da API do ORCID e OpenAlex para usar na comparação entre dois pesquisadores */
 const fetchPesquisador = async (orcidID) => {
   try {
+    /* Chama o ORCID */
     const [rec, wrk] = await Promise.all([
       fetch(`https://pub.orcid.org/v3.0/${orcidID}/record`, {
         headers: { Accept: "application/json" },
@@ -15,6 +18,7 @@ const fetchPesquisador = async (orcidID) => {
       }).then((r) => r.json()),
     ]);
 
+    /* Chama o OpenAlex para encontrar os autores */
     const openAlexSearch = await fetch(`https://api.openalex.org/authors?filter=orcid:${orcidID}`)
       .then((r) => r.json());
 
@@ -29,8 +33,12 @@ const fetchPesquisador = async (orcidID) => {
     const totalAutoresRankeados = authorOpenAlex?.ranks?.cited_by_count?.total ?? "N/A";
     const meanCitedness = authorOpenAlex?.summary_stats?.["2yr_mean_citedness"] ?? "N/A";
     let venues = [];
+
+
     try {
     if (openAlexId) {
+
+      /* OpenAlex para encontrar os trabalhos */
         const worksOpenAlex = await fetch(
         `https://api.openalex.org/works?filter=author.id:${openAlexId}&sort=cited_by_count:desc&per_page=5`
         ).then((r) => r.json());

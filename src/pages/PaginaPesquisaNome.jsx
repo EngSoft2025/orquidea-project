@@ -19,6 +19,8 @@ const PaginaPesquisaNome = () => {
   const [keyword, setKeyword] = useState("");
   const [orcid, setOrcid] = useState("");
 
+
+    /* Busca avançada */
   const handleAdvancedSearch = (e) => {
     e.preventDefault();
     const query = [];
@@ -58,7 +60,7 @@ const PaginaPesquisaNome = () => {
   };
 
 
-
+  
   useEffect(() => {
     if (!nomeBusca) return;
 

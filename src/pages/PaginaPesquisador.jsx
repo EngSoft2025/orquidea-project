@@ -3,6 +3,9 @@ import { useLocation, Link } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
+
+/* Perfil do pesquisador */
+
 const PaginaPesquisador = () => {
   const [dados, setDados] = useState(null);
   const [works, setWorks] = useState([]);
@@ -14,6 +17,7 @@ const PaginaPesquisador = () => {
   const leftCardRef = useRef(null);
   const rightCardRef = useRef(null);
 
+  /* Callback para o botão de copiar o ORCID ID/ */
   const handleCopyOrcid = () => {
     if (!orcidID) return;
     navigator.clipboard.writeText(orcidID).then(
@@ -27,19 +31,22 @@ const PaginaPesquisador = () => {
     );
   };
 
+  /* Chamada para a API do ORCID */
   useEffect(() => {
     if (!orcidID) return;
     (async () => {
       try {
         const [rec, wrk] = await Promise.all([
-          fetch(`https://pub.orcid.org/v3.0/${orcidID}/record`, {
+          fetch(`https://pub.orcid.org/v3.0/${orcidID}/record`, { // Busca no endpoint /record (informações pessoais)
             headers: { Accept: "application/json" },
           }).then((r) => r.json()),
-          fetch(`https://pub.orcid.org/v3.0/${orcidID}/works`, {
+          fetch(`https://pub.orcid.org/v3.0/${orcidID}/works`, { // Busca no endpoint /works (publicações)
             headers: { Accept: "application/json" },
           }).then((r) => r.json()),
         ]);
+
         setDados(rec);
+
         const lista = wrk.group?.map((g) => {
           const s = g["work-summary"]?.[0];
           const url = s["external-ids"]?.["external-id"]?.find(e => e["external-id-type"] === "doi")?.["external-id-url"]?.value;
@@ -49,8 +56,11 @@ const PaginaPesquisador = () => {
             url,
           };
         }) || [];
+
         setWorks(lista.sort((a, b) => (b.year || 0) - (a.year || 0)));
+
         const detailedAffiliations = rec?.["activities-summary"]?.employments?.["employment-summary"];
+        
         if (detailedAffiliations && detailedAffiliations.length > 0) {
           const formatted = detailedAffiliations.map(item => ({
             name: item.organization.name,
@@ -61,7 +71,9 @@ const PaginaPesquisador = () => {
           const searchRes = await fetch(`https://pub.orcid.org/v3.0/expanded-search/?q=orcid:${orcidID}`, {
             headers: { Accept: "application/json" }
           });
+
           const searchData = await searchRes.json();
+
           const institutionNames = searchData?.["expanded-result"]?.[0]?.["institution-name"];
           if (institutionNames && institutionNames.length > 0) {
             const formatted = institutionNames.map(name => ({ name: name, date: null }));
@@ -74,6 +86,7 @@ const PaginaPesquisador = () => {
     })();
   }, [orcidID]);
 
+  
   useLayoutEffect(() => {
     const setCardsHeight = () => {
       if (leftCardRef.current && rightCardRef.current) {
@@ -94,6 +107,8 @@ const PaginaPesquisador = () => {
   }, [dados, works, institutions]);
 
   return (
+
+    // Informações do pesquisador
     <div className="page-container">
       <Navbar showSearchBar extraClass="navbar-pesquisador" />
       <section className="researchSection">
@@ -126,7 +141,9 @@ const PaginaPesquisador = () => {
             <p>Carregando dados…</p>
           )}
         </div>
+          
 
+        {/* Ultimos artigos publicados */}
         <div className="researchInfo" ref={rightCardRef}>
           <h2>Últimos artigos publicados</h2>
           <ul>
@@ -139,7 +156,8 @@ const PaginaPesquisador = () => {
             ))}
           </ul>
         </div>
-
+        
+        {/* Instituições associadas  */}
         {institutions.length > 0 && (
           <div className="institutionsCard">
             <h2>Instituições</h2>

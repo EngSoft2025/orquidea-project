@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
+/* Barra de pesquisa principal */
 const SearchBar = () => {
   const [inputValue, setInput] = useState("");
   const navigate = useNavigate();

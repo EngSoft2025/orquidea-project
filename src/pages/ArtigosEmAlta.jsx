@@ -12,6 +12,7 @@ const palavrasQuentes = [
   "Bioinformatics", "Deep Learning", "5G Technology", "Space Exploration", "Autonomous Vehicles"
 ];
 
+
 const ArtigosEmAlta = () => {
   const [input, setInput] = useState("");
   const [artigos, setArtigos] = useState([]);

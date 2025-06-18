@@ -6,6 +6,8 @@ import FlashCard from "../components/ui/FlashCard";
 import { Link } from "react-router-dom";
 import Typed from "typed.js";
 
+
+/* Página inicial -- homepage */
 const Index = () => {
   const el = useRef(null);
   const typed = useRef(null);

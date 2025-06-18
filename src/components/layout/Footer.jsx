@@ -10,12 +10,8 @@ const Footer = () => {
         <div className="footer"> 
             <p>© {anoAtual} Orquidea. Todos os direitos reservados.</p>
 
-
         </div>
-
-
     );
-
 
 }
 
