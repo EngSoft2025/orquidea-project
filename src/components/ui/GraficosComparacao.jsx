@@ -21,67 +21,74 @@ const GraficosComparacao = ({ pesquisadores }) => {
     { label: "i10-index", key: "i10Index" },
   ];
 
+  const createGradient = (ctx, chartArea, color1, color2) => {
+    const gradient = ctx.createLinearGradient(0, chartArea.bottom, 0, chartArea.top);
+    gradient.addColorStop(0, color2);
+    gradient.addColorStop(1, color1);
+    return gradient;
+  };
+
   const gerarDados = (key) => ({
     labels: [pesquisadores[0].nome, pesquisadores[1].nome],
     datasets: [
       {
-        label: key,
         data: [
           Number(pesquisadores[0][key]) || 0,
           Number(pesquisadores[1][key]) || 0,
         ],
-        backgroundColor: ["#FFD700", "#38bdf8"],
+        backgroundColor: (context) => {
+          const { chart } = context;
+          const { ctx, chartArea } = chart;
+
+          if (!chartArea) {
+            return ["#B8860B", "#6A85B6"];
+          }
+          
+          const goldGradient = createGradient(ctx, chartArea, "#FFD700", "#B8860B");
+          const royalBlueGradient = createGradient(ctx, chartArea, "#3a7bd5", "#002D62");
+          
+          return [goldGradient, royalBlueGradient];
+        },
         borderRadius: 6,
       },
     ],
   });
 
   const options = {
+    responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: { display: false },
     },
     scales: {
       x: {
-        ticks: { color: "#fff", font: { family: "Montserrat" } },
-        grid: { color: "rgba(255,255,255,0.1)" },
+        ticks: { color: "#E5E7EB", font: { family: "Montserrat" } },
+        grid: { color: "rgba(255, 255, 255, 0.1)" },
       },
       y: {
         beginAtZero: true,
-        ticks: { color: "#fff", font: { family: "Montserrat" } },
-        grid: { color: "rgba(255,255,255,0.1)" },
+        ticks: { color: "#E5E7EB", font: { family: "Montserrat" } },
+        grid: { color: "rgba(255, 255, 255, 0.1)" },
       },
     },
   };
 
   return (
-    <div className="graficos-container" style={{ padding: "2rem", color: "white" }}>
+    <section className="graficos-section">
       <div className="compareTitle">
         <h1 className="h2-res">Comparar Métricas dos Pesquisadores</h1>
       </div>
-      <br></br>
-      <div style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "space-between",
-        alignContent: "center",
-        rowGap: "2rem",
-        marginTop: "2rem",
-        maxWidth: "1300px",
-        margin: "0 auto", 
-      }}>
-        {metricas.map(({ label, key }, i) => (
-          <div key={i} style={{
-            width: "48%",
-            background: "#1e293b",
-            borderRadius: "12px",
-            padding: "1rem",
-          }}>
-            <h4 style={{ color: "#fff", textAlign: "center", marginBottom: "1rem" }}>{label}</h4>
-            <Bar data={gerarDados(key)} options={options} />
+      <div className="graficos-container">
+        {metricas.map(({ label, key }) => (
+          <div key={key} className="grafico-wrapper">
+            <h3 className="grafico-titulo">{label}</h3>
+            <div style={{ height: '300px' }}>
+              <Bar data={gerarDados(key)} options={options} />
+            </div>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

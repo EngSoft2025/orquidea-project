@@ -198,6 +198,99 @@ body {
   flex-direction: column;
     overflow-x: hidden;
 }
+
+
+.researchCard.comparar {
+  display: flex;
+  flex-direction: column;
+  height: 700px;
+  max-height: 80vh;
+  width: 600px;
+}
+
+.card-comparacao-header {
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.card-comparacao-body {
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-right: 15px;
+  margin-right: -15px;
+}
+.card-comparacao-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.card-comparacao-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.card-comparacao-body::-webkit-scrollbar-thumb {
+  background-color: #B8860B;
+  border-radius: 4px;
+  border: 2px solid #1E2A38;
+}
+
+.card-comparacao-footer {
+  padding-top: 20px;
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.card-comparacao-footer .submit-button {
+  width: 50%;
+}
+
+.graficos-section {
+  width: 100%;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.graficos-section .compareTitle {
+  margin-bottom: 2rem;
+}
+
+.graficos-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.grafico-wrapper {
+  background: linear-gradient(180deg, #1E2A38 0%, #15202B 100%);
+  border-radius: 15px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  width: calc(50% - 1rem);
+  min-width: 450px;
+}
+
+.grafico-titulo {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #D1D5DB;
+}
+
+@media (max-width: 992px) {
+  .grafico-wrapper {
+    width: 100%;
+    min-width: 0;
+  }
+}
 /* NAVBAR */
 .navbar {
   position: absolute;
@@ -1277,3 +1370,225 @@ body {
   margin-top: 0.25rem;
 }
 
+/* ===== Modal de Busca de Pesquisador ===== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: linear-gradient(180deg, #1E2A38 0%, #15202B 100%);
+  color: #fff;
+  padding: 2rem;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 700px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.modal-close-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.modal-content h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(90deg, #FFD700 0%, #B8860B 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.modal-search-bar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.modal-search-bar input {
+  flex-grow: 1;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.3);
+  background-color: #15202B;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.modal-search-bar button {
+  padding: 0 24px;
+  background-color: white;
+  color: goldenrod;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-search-bar button:hover {
+  background-color: #e0e0e0;
+}
+
+.modal-search-bar button:disabled {
+  background-color: #555;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.modal-error {
+  color: #ef4444;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.modal-results {
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.modal-result-item {
+  background-color: #15202B;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: transform 0.2s ease, border-left-color 0.2s ease;
+}
+
+.modal-result-item:hover {
+  transform: translateX(5px);
+  border-left-color: #B8860B;
+}
+
+.result-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #fff;
+}
+
+.result-institution {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin: 0.25rem 0;
+}
+
+.result-orcid {
+  font-size: 0.9rem;
+  color: #B8860B;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.modal-results::-webkit-scrollbar {
+  width: 8px;
+}
+.modal-results::-webkit-scrollbar-track {
+  background: transparent;
+}
+.modal-results::-webkit-scrollbar-thumb {
+  background-color: #B8860B;
+  border-radius: 4px;
+  border: 2px solid #1E2A38;
+}
+
+/* Estilos para as opções de adição no card de comparação */
+.addResearcher {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  padding: 2rem;
+}
+
+.add-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.add-title {
+  color: #fff;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.add-options .searchbarComp {
+  background-color: #15202B;
+  color: white;
+  width: 90%;
+}
+
+.add-options .submit-button {
+  width: 90%;
+}
+
+.ou-divider {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+.carregando-texto {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+  opacity: 0.8;
+}
+
+
+@media (max-width: 1240px) {
+  .compareContainer {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem; 
+  }
+
+  .researchCard.comparar {
+    width: 100%;
+    max-width: 600px; 
+
+  }
+  
+  .vs-divider {
+    height: auto;
+    width: 80%;
+    max-width: 600px;
+    padding: 1rem 0;
+    margin: 1rem 0;
+    writing-mode: horizontal-tb;
+  }
+}
