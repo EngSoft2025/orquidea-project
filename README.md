@@ -28,7 +28,6 @@ Este projeto está organizado para facilitar o desenvolvimento e a manutenção 
 
 ```bash
 ├── assets/              # Arquivos estáticos como imagens e ícones
-├── docs/                # Documentação de requisitos, plano de projeto, etc.
 ├── public/              # Arquivos públicos acessíveis diretamente
 ├── src/                 # Código-fonte da aplicação
 │   └── ...              # Componentes, páginas, estilos, etc.
