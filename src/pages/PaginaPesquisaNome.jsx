@@ -232,31 +232,34 @@ const PaginaPesquisaNome = () => {
             <p style={{ marginTop: "1rem", fontWeight: "500" }}>
                 Mostrando <b>{resultadosVisiveis.length}</b> de <b>{resultados.length}</b>  pesquisadores encontrados.
             </p>
-            <table className="tabela-resultados">
-              <thead>
-                <tr>
-                  <th>ORCID ID</th>
-                  <th>Nome</th>
-                  <th>Universidades</th>
-                  <th>Palavras-chave</th>
-                </tr>
-              </thead>
-              <tbody>
-                {resultadosVisiveis.map((r, i) => (
-                    <tr className="resultCard" key={i}>
-                        <td>
-                            <button className="link-orcid" onClick={() => irParaPesquisador(r.orcid)}>
-                            {r.orcid}
-                            </button>
-                        </td>
-                        <td>{r.name && r.name.trim() !== "" ? r.name : "Sem nome cadastrado"}</td>
-                        <td>{r.instituicao}</td>
-                        <td>{r.keywords && r.keywords.trim() !== "" ? r.keywords : "Sem palavras-chave cadastradas"}</td>
-                    </tr>
-                
-                ))}
-              </tbody>
-            </table>
+            <div className="table-wrapper">
+              <table className="tabela-resultados">
+                <thead>
+                  <tr>
+                    <th><span>ORCID ID</span></th>
+                    <th><span>Nome</span></th>
+                    <th><span>Universidades</span></th>
+                    <th><span>Palavras-chave</span></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  {resultadosVisiveis.map((r, i) => (
+                      <tr className="resultCard" key={i}>
+                          <td>
+                              <button className="link-orcid" onClick={() => irParaPesquisador(r.orcid)}>
+                              {r.orcid}
+                              </button>
+                          </td>
+                          <td>{r.name && r.name.trim() !== "" ? r.name : "Sem nome cadastrado"}</td>
+                          <td>{r.instituicao}</td>
+                          <td>{r.keywords && r.keywords.trim() !== "" ? r.keywords : "Sem palavras-chave cadastradas"}</td>
+                      </tr>
+                  
+                  ))}
+                </tbody>
+              </table>
+            </div>
 
             {resultados.length > resultadosVisiveis.length && (
                 <div className="ver-mais-container">

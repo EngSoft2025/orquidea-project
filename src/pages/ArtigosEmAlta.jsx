@@ -22,6 +22,8 @@ const ArtigosEmAlta = () => {
   const hasKeyword = params.get("keyword") != null;
   const [modoBusca, setModoBusca] = useState(!hasKeyword);
   const [totalArtigos, setTotalArtigos] = useState(0);
+  const [paginaAtual, setPaginaAtual] = useState(1);
+  const [loadingMore, setLoadingMore] = useState(false);
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const kw = params.get("keyword");
@@ -36,6 +38,7 @@ const ArtigosEmAlta = () => {
     setLoading(true);
     setErro(null);
     setArtigos([]);
+    setPaginaAtual(1)
     try {
       const anoAtual = new Date().getFullYear();
       const anos = [anoAtual, anoAtual - 1, anoAtual - 2];
@@ -54,14 +57,13 @@ const ArtigosEmAlta = () => {
     let worksUrl;
     let countUrl;
     if (conceptData.results && conceptData.results.length > 0) {
-      const conceptId = conceptData.results[0].id;
-      worksUrl = `https://api.openalex.org/works?filter=concepts.id:${conceptId},from_publication_date:${dataInicioStr}&per_page=100&sort=cited_by_count:desc`;
-      countUrl = `https://api.openalex.org/works?filter=concepts.id:${conceptId},from_publication_date:${dataInicioStr}`;
-    } else {
-      // full-text search se não houver concept
-      worksUrl = `https://api.openalex.org/works?search=${encodeURIComponent(keyword)}&filter=from_publication_date:${dataInicioStr}&per_page=100&sort=cited_by_count:desc`;
-      countUrl = `https://api.openalex.org/works?search=${encodeURIComponent(keyword)}&filter=from_publication_date:${dataInicioStr}`;
-    }
+        const conceptId = conceptData.results[0].id;
+        worksUrl = `https://api.openalex.org/works?filter=concepts.id:${conceptId},from_publication_date:${dataInicioStr}&per_page=10&page=1&sort=cited_by_count:desc`;
+        countUrl = `https://api.openalex.org/works?filter=concepts.id:${conceptId},from_publication_date:${dataInicioStr}`;
+      } else {
+        worksUrl = `https://api.openalex.org/works?search=${encodeURIComponent(keyword)}&filter=from_publication_date:${dataInicioStr}&per_page=10&page=1&sort=cited_by_count:desc`;
+        countUrl = `https://api.openalex.org/works?search=${encodeURIComponent(keyword)}&filter=from_publication_date:${dataInicioStr}`;
+      }
 
     // executa ambos os fetches
     const worksRes = await fetch(worksUrl);
@@ -102,6 +104,58 @@ const ArtigosEmAlta = () => {
     }
   };
 
+  const handleVerMais = async () => {
+    if (loadingMore || artigos.length >= totalArtigos) return;
+
+    setLoadingMore(true);
+    setErro(null);
+    const nextPage = paginaAtual + 1;
+
+    try {
+      const dataInicio = new Date();
+      dataInicio.setFullYear(dataInicio.getFullYear() - 3);
+      const dataInicioStr = dataInicio.toISOString().split("T")[0];
+
+      // A lógica para montar a URL é a mesma, apenas muda a página
+      const conceptRes = await fetch(
+        `https://api.openalex.org/concepts?search=${encodeURIComponent(input)}&per_page=1`
+      );
+      const conceptData = await conceptRes.json();
+
+      let worksUrl;
+      if (conceptData.results && conceptData.results.length > 0) {
+        const conceptId = conceptData.results[0].id;
+        worksUrl = `https://api.openalex.org/works?filter=concepts.id:${conceptId},from_publication_date:${dataInicioStr}&per_page=10&page=${nextPage}&sort=cited_by_count:desc`;
+      } else {
+        worksUrl = `https://api.openalex.org/works?search=${encodeURIComponent(input)}&filter=from_publication_date:${dataInicioStr}&per_page=10&page=${nextPage}&sort=cited_by_count:desc`;
+      }
+
+      const worksRes = await fetch(worksUrl);
+      const worksData = await worksRes.json();
+
+      const anoAtual = new Date().getFullYear();
+      const anos = [anoAtual, anoAtual - 1, anoAtual - 2];
+      const newWorks = worksData.results.map((w) => {
+        const counts = Object.fromEntries((w.counts_by_year || []).map(c => [c.year, c.cited_by_count]));
+        const citacoes3anos = anos.reduce((acc, y) => acc + (counts[y] || 0), 0);
+        const venue = w.primary_location?.source?.display_name || w.host_venue?.display_name || "Desconhecido";
+        return {
+          ...w, citacoes3anos, venue,
+          url: w.primary_location?.url || (w.ids?.doi ? `https://doi.org/${w.ids.doi}` : w.id),
+        };
+      });
+
+      // Adiciona os novos artigos aos já existentes
+      setArtigos(prevArtigos => [...prevArtigos, ...newWorks]);
+      setPaginaAtual(nextPage);
+
+    } catch (e) {
+      console.error(e);
+      setErro("Erro ao carregar mais artigos.");
+    } finally {
+      setLoadingMore(false);
+    }
+  };
   return (
     <div className="page-container">
       <Navbar showSearchBar extraClass="navbar-pesquisador" />
@@ -183,37 +237,50 @@ const ArtigosEmAlta = () => {
                   Encontramos <b>{totalArtigos.toLocaleString()}</b> artigos com esse tema nos últimos 3 anos.
                 </p>
 
-                <table className="tabela-resultados tabela-animada">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Título</th>
-                      <th>Publicado em</th>
-                      <th>Ano</th>
-                      <th>Citações (3 anos)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {artigos.slice(0, 10).map((a, i) => (
-                      <tr key={i}>
-                        <td>{i + 1}</td>
-                        <td>
-                          <a
-                            href={a.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="link-artigo"
-                          >
-                            {a.display_name}
-                          </a>
-                        </td>
-                        <td>{a.venue}</td>
-                        <td>{a.publication_year}</td>
-                        <td>{a.citacoes3anos}</td>
+                <div className="table-wrapper">
+                  <table className="tabela-resultados tabela-animada">
+                    <thead>
+                      <tr>
+                        <th><span>#</span></th>
+                        <th><span>Título</span></th>
+                        <th><span>Publicado em</span></th>
+                        <th><span>Ano</span></th>
+                        <th><span>Citações (3 anos)</span></th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {artigos.map((a, i) => (
+                        <tr key={i}>
+                          <td>{i + 1}</td>
+                          <td>
+                            <a
+                              href={a.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="link-artigo"
+                            >
+                              {a.display_name}
+                            </a>
+                          </td>
+                          <td>{a.venue}</td>
+                          <td>{a.publication_year}</td>
+                          <td>{a.citacoes3anos}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                {artigos.length > 0 && artigos.length < totalArtigos && (
+                  <div className="ver-mais-container">
+                    <button
+                      onClick={handleVerMais}
+                      className="ver-mais-btn"
+                      disabled={loadingMore}
+                    >
+                      {loadingMore ? "Carregando..." : "Ver mais resultados"}
+                    </button>
+                  </div>
+                )}
               </>
             )}
 

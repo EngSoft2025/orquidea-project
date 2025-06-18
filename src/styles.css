@@ -924,17 +924,16 @@ body {
 
 /* --- RESULTADOS DE BUSCA COMO CARDS ESCUROS --- */
 .tabela-resultados {
+  width: 100%;
+  min-width: 650px;
   border-collapse: separate !important;
   border-spacing: 0 12px !important;
   background: transparent !important; 
 }
 
 .tabela-resultados tbody tr {
-  background: linear-gradient(180deg, #1E2A38 0%, #15202B 100%);
-  border-radius: 15px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
-  overflow: hidden;
 }
 
 .tabela-resultados tbody tr:hover {
@@ -942,6 +941,10 @@ body {
   box-shadow:
     0 6px 20px rgba(255, 255, 255, 0.2),
     0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.tabela-resultados td {
+  background: linear-gradient(180deg, #1E2A38 0%, #15202B 100%);
 }
 
 .tabela-resultados th,
@@ -963,18 +966,20 @@ body {
 
 /* ===== Cabeçalho da tabela como cards escuros com texto dourado degradê ===== */
 .tabela-resultados thead th {
-  background-image:
-    linear-gradient(90deg, #FFD700 0%, #B8860B 100%),
-    linear-gradient(180deg, #15202B 0%, #000000 100%);
-  -webkit-background-clip: text, padding-box;
-          background-clip: text, padding-box;
-  -webkit-text-fill-color: transparent;
-          color: transparent;
-  border: none;
+  background: linear-gradient(180deg, #15202B 0%, #000000 100%);
+  border: none !important;
   padding: 18px 16px;
   box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+  text-align: left;
 }
 
+.tabela-resultados thead th span {
+  background: linear-gradient(120deg, #FFD700 0%, #B8860B 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 600;
+}
 
 .tabela-resultados thead th:first-child {
   border-top-left-radius: 12px;
@@ -1245,6 +1250,26 @@ body {
 
 .page-container .footer {
   margin-top: auto;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: #15202B;
+  border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background-color: #B8860B;
+  border-radius: 4px;
 }
 /* Animação */
 @keyframes fadeInSlideUp {
