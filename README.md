@@ -153,9 +153,9 @@ Gostaríamos de agradecer ao professor Seiji Isotani e aos monitores, pela sua o
 
 ## 👥 Equipe
 
-- Felipe de Castro Azambuja - **14675437** ([Github](https://github.com/MatheusPaivaa))
-- João Pedro Viguini T.T. Correa - **14675503** ([Github](https://github.com/MatheusPaivaa))
+- Felipe de Castro Azambuja - **14675437** ([Github](https://github.com/DeguShi))
+- João Pedro Viguini T.T. Correa - **14675503** ([Github](https://github.com/jpviguini))
 - Matheus Paiva Angarola - **12560982** ([Github](https://github.com/MatheusPaivaa))
-- Pietra Gullo Salgado Chaves - **14603822** ([Github](https://github.com/MatheusPaivaa))
+- Pietra Gullo Salgado Chaves - **14603822** ([Github](https://github.com/pijuma))
 
 Estudantes de Bacharelado em Ciência da Computação - USP
