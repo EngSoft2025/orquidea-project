@@ -117,8 +117,9 @@ Realizamos testes em diferentes níveis:
 | 1          | 21/05/2025 | Página inicial (protótipo funcional)          |
 | 2          | 28/05/2025 | Página de perfil do pesquisador              |
 | 3          | 04/06/2025 | Integração com ORCID API                      |
-| 4          | 11/06/2025 | Complemento de citações manuais              |
-| 5          | 18/06/2025 | Busca, comparação e ranking de pesquisadores |
+| 4          | 11/06/2025 | Métricas e avaliação              |
+| 5          | 18/06/2025 | Sistema de ranqueamento |
+| 6          | 22/06/2025 | Entrega do projeto finalizados |
 
 ## <div id="riscos"></div>Gerenciamento de Riscos
 
