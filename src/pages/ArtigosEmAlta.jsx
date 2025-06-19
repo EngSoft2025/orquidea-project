@@ -13,6 +13,7 @@ const palavrasQuentes = [
   "Bioinformatics", "Deep Learning", "5G Technology", "Space Exploration", "Autonomous Vehicles"
 ];
 
+
 const ArtigosEmAlta = () => {
   // Estados para controlar input, artigos, erros, loading, etc.
   const [input, setInput] = useState("");

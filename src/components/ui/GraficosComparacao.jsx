@@ -11,6 +11,8 @@ import {
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
+
+/* Métricas de comparação entre dois pesquisadores (total publicações/citações, h-index, i10-index)*/
 const GraficosComparacao = ({ pesquisadores }) => {
   if (!pesquisadores[0] || !pesquisadores[1]) return null;
 
