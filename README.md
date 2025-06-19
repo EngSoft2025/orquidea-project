@@ -65,7 +65,7 @@ Este projeto está organizado para facilitar o desenvolvimento e a manutenção 
 
 ##  <div id="documentos"></div>Documentos
 
-- [📄 Documento de Requisitos]()  
+- [📄 Documento de Requisitos](https://github.com/EngSoft2025/orquidea-project/blob/c2fed515a7676bfbbf78a1705e0da60f5470605e/docs/Especifica%C3%A7%C3%A3o%20de%20Requisitos%20de%20Software.pdf)  
 - [🗂️ Plano de Projeto](https://github.com/EngSoft2025/orquidea-project/blob/5a68edbb17e004748c48f546b0bf1616f594b4cd/docs/Plano%20de%20projeto%20-%20Lattes%20Mas%20N%C3%A3o%20Morde.pdf)
 
 ## <div id="instalacao"></div>Instalação e Uso
