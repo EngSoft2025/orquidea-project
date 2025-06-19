@@ -3,6 +3,7 @@
 
 <p align="center">
   <a href="#estrutura-do-projeto">Estrutura do Projeto</a> • 
+   <a href="#documentos">Documentos</a> •
   <a href="#instalacao">Instalação e Uso</a> • 
   <a href="#objetivo">Objetivo</a> • 
   <a href="#tecnologias">Tecnologias</a> • 
@@ -61,6 +62,11 @@ Este projeto está organizado para facilitar o desenvolvimento e a manutenção 
 ├── package-lock.json    # Registro exato das versões instaladas
 ├── vite.config.js       # Configuração do Vite (build tool)
 ```
+
+##  <div id="documentos"></div>Documentos
+
+- [📄 Documento de Requisitos]()  
+- [🗂️ Plano de Projeto](https://github.com/EngSoft2025/orquidea-project/blob/5a68edbb17e004748c48f546b0bf1616f594b4cd/docs/Plano%20de%20projeto%20-%20Lattes%20Mas%20N%C3%A3o%20Morde.pdf)
 
 ## <div id="instalacao"></div>Instalação e Uso
 
@@ -143,7 +149,7 @@ Contribuições são bem-vindas! Por favor, faça um fork do repositório e envi
 Este projeto está licenciado sob a Licença MIT. Veja o arquivo LICENSE para mais detalhes.
 
 ## <div id="acknowledgements"></div>Agradecimentos
-Gostaríamos de agradecer aos ..., pela sua orientação e apoio ao longo deste projeto.
+Gostaríamos de agradecer ao professor Seiji Isotani e aos monitores, pela sua orientação e apoio ao longo deste projeto.
 
 ## 👥 Equipe
 
