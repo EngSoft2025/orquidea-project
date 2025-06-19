@@ -3,17 +3,23 @@ import { useLocation, Link } from "react-router-dom";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
 
+// Componente principal da página do pesquisador
 const PaginaPesquisador = () => {
+  // Estados para armazenar dados do pesquisador, trabalhos, instituições e status de cópia do ORCID
   const [dados, setDados] = useState(null);
   const [works, setWorks] = useState([]);
   const [institutions, setInstitutions] = useState([]);
   const [isCopied, setIsCopied] = useState(false);
+
+  // Hook para acessar a URL e extrair o parâmetro ORCID
   const location = useLocation();
   const orcidID = new URLSearchParams(location.search).get("orcid");
 
+  // Refs para manipular altura dos cards lateralmente
   const leftCardRef = useRef(null);
   const rightCardRef = useRef(null);
 
+  // Função para copiar o ORCID para a área de transferência
   const handleCopyOrcid = () => {
     if (!orcidID) return;
     navigator.clipboard.writeText(orcidID).then(
@@ -27,10 +33,12 @@ const PaginaPesquisador = () => {
     );
   };
 
+  // Efeito para buscar dados do pesquisador e suas publicações ao carregar a página ou mudar o ORCID
   useEffect(() => {
     if (!orcidID) return;
     (async () => {
       try {
+        // Busca os dados do pesquisador e suas publicações em paralelo
         const [rec, wrk] = await Promise.all([
           fetch(`https://pub.orcid.org/v3.0/${orcidID}/record`, {
             headers: { Accept: "application/json" },
@@ -40,6 +48,8 @@ const PaginaPesquisador = () => {
           }).then((r) => r.json()),
         ]);
         setDados(rec);
+
+        // Processa e ordena as publicações por ano
         const lista = wrk.group?.map((g) => {
           const s = g["work-summary"]?.[0];
           const url = s["external-ids"]?.["external-id"]?.find(e => e["external-id-type"] === "doi")?.["external-id-url"]?.value;
@@ -50,6 +60,8 @@ const PaginaPesquisador = () => {
           };
         }) || [];
         setWorks(lista.sort((a, b) => (b.year || 0) - (a.year || 0)));
+
+        // Busca e formata as instituições do pesquisador
         const detailedAffiliations = rec?.["activities-summary"]?.employments?.["employment-summary"];
         if (detailedAffiliations && detailedAffiliations.length > 0) {
           const formatted = detailedAffiliations.map(item => ({
@@ -58,6 +70,7 @@ const PaginaPesquisador = () => {
           }));
           setInstitutions(formatted);
         } else {
+          // Busca alternativa caso não haja afiliações detalhadas
           const searchRes = await fetch(`https://pub.orcid.org/v3.0/expanded-search/?q=orcid:${orcidID}`, {
             headers: { Accept: "application/json" }
           });
@@ -74,6 +87,7 @@ const PaginaPesquisador = () => {
     })();
   }, [orcidID]);
 
+  // Efeito para igualar a altura dos cards laterais
   useLayoutEffect(() => {
     const setCardsHeight = () => {
       if (leftCardRef.current && rightCardRef.current) {
@@ -93,10 +107,12 @@ const PaginaPesquisador = () => {
     };
   }, [dados, works, institutions]);
 
+  // Renderização da página
   return (
     <div className="page-container">
       <Navbar showSearchBar extraClass="navbar-pesquisador" />
       <section className="researchSection">
+        {/* Card com informações principais do pesquisador */}
         <div className="researchCard" ref={leftCardRef}>
           {dados ? (
             <>
@@ -112,6 +128,7 @@ const PaginaPesquisador = () => {
                 {isCopied && <span className="copy-feedback">✔</span>}
               </div>
               <p><strong>Total de publicações:</strong> {works.length}</p>
+              {/* Exibe palavras-chave do pesquisador */}
               {dados.person.keywords?.keyword?.length > 0 && (
                 <div className="keywords-container">
                   {dados.person.keywords.keyword.map((kw, i) => (
@@ -127,6 +144,7 @@ const PaginaPesquisador = () => {
           )}
         </div>
 
+        {/* Card com lista dos últimos artigos publicados */}
         <div className="researchInfo" ref={rightCardRef}>
           <h2>Últimos artigos publicados</h2>
           <ul>
@@ -140,6 +158,7 @@ const PaginaPesquisador = () => {
           </ul>
         </div>
 
+        {/* Card com lista de instituições do pesquisador */}
         {institutions.length > 0 && (
           <div className="institutionsCard">
             <h2>Instituições</h2>

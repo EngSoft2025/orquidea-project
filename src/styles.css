@@ -1,3 +1,4 @@
+/* Reset básico para todos os elementos: remove margens, paddings e define fonte padrão */
 * {
   margin: 0;
   padding: 0;
@@ -5,12 +6,14 @@
   font-family: "Montserrat", sans-serif;
 }
 
+/* Define altura total e previne scroll horizontal */
 html, body {
   height: 100%;
   overflow-x: hidden; /* previne scroll horizontal */
 }
 
 /* ===== Comparar pesquisadores ===== */
+/* Seção principal de comparação de pesquisadores */
 .compareSection {
   display: flex;
   justify-content: center;
@@ -18,6 +21,7 @@ html, body {
   flex-grow: 1;
 }
 
+/* Barra de busca na comparação */
 .searchbarComp {
   padding: 12px 14px;
   border-radius: 8px;
@@ -31,6 +35,7 @@ html, body {
               border-color 0.3s ease;
 }
 
+/* Efeito ao focar na barra de busca de comparação */
 .searchbarCOmp:focus {
   width: 600px;
   height: 48px;
@@ -39,6 +44,7 @@ html, body {
   outline: none;
 }
 
+/* Container dos cards de comparação */
 .compareContainer {
   display: flex;
   justify-content: center;
@@ -49,7 +55,7 @@ html, body {
   flex-wrap: wrap;
 }
 
-
+/* Botão para trocar pesquisador */
 .change-button {
   margin-top: 1rem;
   padding: 0.5rem 1rem;
@@ -62,12 +68,12 @@ html, body {
   transition: background 0.3s;
 }
 
-
+/* Efeito hover no botão de troca */
 .change-button:hover {
   background-color: #ea580c;
 }
 
-
+/* Card de comparação de pesquisador */
 .compararCard {
   flex: 1 1 350px;
   max-width: 850px;
@@ -80,16 +86,20 @@ html, body {
   cursor: default;
   user-select: none;
 }
+
+/* Wrapper da página de comparação para layout flexível */
 .comparePageWrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+/* Footer sempre no final da página de comparação */
 .comparePageWrapper .footer {
   margin-top: auto;
 }
 
+/* Área para adicionar pesquisador */
 .addResearcher {
   display: flex;
   justify-content: center;
@@ -98,6 +108,7 @@ html, body {
   width: 100%;
 }
 
+/* Input dentro da área de adicionar pesquisador */
 .addResearcher input {
   padding: 0.5rem;
   margin-bottom: 0.5rem;
@@ -106,18 +117,21 @@ html, body {
   border: 1px solid #aaa;
 }
 
+/* Botão dentro da área de adicionar pesquisador */
 .addResearcher button {
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
   cursor: pointer;
 }
 
+/* Título da comparação */
 .compareTitle {
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
 
+/* Gradiente dourado no título */
 .compareTitle h1 {
   background: linear-gradient(90deg, #FFD700 0%, #B8860B 100%);
   -webkit-background-clip: text;
@@ -125,6 +139,7 @@ html, body {
   color: transparent;
 }
 
+/* Botão circular para adicionar pesquisador */
 .add-button {
   width: 60px;
   height: 60px;
@@ -137,11 +152,13 @@ html, body {
   transition: transform 0.2s, border-color 0.3s;
 }
 
+/* Efeito hover no botão de adicionar */
 .add-button:hover {
   transform: scale(1.1);
   border-color: #FFD700;
 }
 
+/* Botão de envio (submit) */
 .submit-button {
   padding: 8px 16px;
   background-color: white;
@@ -153,16 +170,19 @@ html, body {
   transition: background-color 0.3s;
 }
 
+/* Efeito hover no botão submit */
 .submit-button:hover {
   background-color: #e0e0e0;
 }
 
+/* Lista de tipos (sem marcadores) */
 .lista-tipos {
   list-style: none;
   padding-left: 0;
   margin-top: 0.5rem;
 }
 
+/* Itens da lista de tipos */
 .lista-tipos li {
   background-color: #1e293b;
   color: #fff;
@@ -172,7 +192,7 @@ html, body {
   font-size: 0.9rem;
 }
 
-
+/* Divisor "VS" entre cards de comparação */
 .vs-divider {
   display: flex;
   align-items: center;       /* Centraliza verticalmente */
@@ -189,17 +209,17 @@ html, body {
   text-align: center;
 }
 
-
+/* Fundo da página */
 body {
   background: linear-gradient(180deg, #15202B 15%, #000000 100%);
   background-attachment: fixed;
   height: 100%;
   display: flex;
   flex-direction: column;
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
-
+/* Card de pesquisador na comparação */
 .researchCard.comparar {
   display: flex;
   flex-direction: column;
@@ -208,6 +228,7 @@ body {
   width: 600px;
 }
 
+/* Cabeçalho do card de comparação */
 .card-comparacao-header {
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -215,26 +236,28 @@ body {
   flex-shrink: 0;
 }
 
+/* Corpo do card de comparação, com rolagem */
 .card-comparacao-body {
   flex-grow: 1;
   overflow-y: auto;
   padding-right: 15px;
   margin-right: -15px;
 }
+
+/* Estilização da barra de rolagem do corpo do card */
 .card-comparacao-body::-webkit-scrollbar {
   width: 8px;
 }
-
 .card-comparacao-body::-webkit-scrollbar-track {
   background: transparent;
 }
-
 .card-comparacao-body::-webkit-scrollbar-thumb {
   background-color: #B8860B;
   border-radius: 4px;
   border: 2px solid #1E2A38;
 }
 
+/* Rodapé do card de comparação */
 .card-comparacao-footer {
   padding-top: 20px;
   margin-top: auto;
@@ -243,20 +266,24 @@ body {
   text-align: center;
 }
 
+/* Botão submit ocupa metade do rodapé */
 .card-comparacao-footer .submit-button {
   width: 50%;
 }
 
+/* Seção de gráficos */
 .graficos-section {
   width: 100%;
   padding: 2rem;
   box-sizing: border-box;
 }
 
+/* Título da seção de gráficos */
 .graficos-section .compareTitle {
   margin-bottom: 2rem;
 }
 
+/* Container dos gráficos */
 .graficos-container {
   display: flex;
   flex-wrap: wrap;
@@ -266,6 +293,7 @@ body {
   margin: 0 auto;
 }
 
+/* Wrapper individual de cada gráfico */
 .grafico-wrapper {
   background: linear-gradient(180deg, #1E2A38 0%, #15202B 100%);
   border-radius: 15px;
@@ -277,6 +305,7 @@ body {
   min-width: 450px;
 }
 
+/* Título do gráfico */
 .grafico-titulo {
   text-align: center;
   margin-bottom: 1.5rem;
@@ -285,13 +314,16 @@ body {
   color: #D1D5DB;
 }
 
+/* Responsividade para gráficos */
 @media (max-width: 992px) {
   .grafico-wrapper {
     width: 100%;
     min-width: 0;
   }
 }
+
 /* NAVBAR */
+/* Barra de navegação principal */
 .navbar {
   position: absolute;
   top: 0;
@@ -305,6 +337,7 @@ body {
   z-index: 20;
 }
 
+/* Links da navbar */
 .navbar a {
   display: flex;
   align-items: center;
@@ -313,6 +346,7 @@ body {
 }
 
 /* TEXTO ORQUIDEA */
+/* Estilo do texto "Orquidea" na navbar */
 .texto_orquidea {
   font-family: "Montserrat", sans-serif;
   font-weight: 500;;
@@ -320,15 +354,16 @@ body {
   font-size: 50px;
   padding-left: 10px;
 }
+
 /* LOGO */
+/* Logo da navbar */
 .logo_img {
   width: 15vw;        
   max-width: 175px;  
   height: auto; 
 }
 
-
-  /* BOTÃO PARA IR PRA PAGINA DO PESQUISADOR */
+/* BOTÃO PARA IR PRA PAGINA DO PESQUISADOR */
 /* .button_page {
   margin-left: 70px;
   background-color: white;
@@ -341,12 +376,12 @@ body {
   transition: background-color 0.3s;
 } */
 
-
+/* Efeito hover no botão de página */
 .button_page:hover {
   background-color: #e0e0e0;
 }
 
-/* ===== NAVBAR VARIANT FOR PÁGINA DO PESQUISADOR ===== */
+/* ===== NAVBAR VARIANTE PARA PÁGINA DO PESQUISADOR ===== */
 .navbar-pesquisador {
   position: relative;
   background: linear-gradient(180deg, #15202B 15%, #000000 100%);
@@ -366,9 +401,9 @@ body {
   font-size: 30px;
   color: #ffffff;
 }
+
 /* ========== SESSÃO 1 ==============*/
-
-
+/* Seção de busca inicial */
 .section_search {
   background: linear-gradient(180deg, #15202B 15%, #000000 100%);
   min-height: 400px;
@@ -381,7 +416,7 @@ body {
   flex-grow: 1;
 }
 
-
+/* Logo e texto alinhados */
 .logo-pos {
   display: flex;
   align-items: center;
@@ -390,7 +425,7 @@ body {
   gap: 10px;
 }
 
-
+/* Título principal da página */
 .titulo {
   display: flex;
   flex-direction: column;
@@ -403,7 +438,7 @@ body {
   gap: 30px;
 }
 
-/* A barra de pesquisa propriamente dita */
+/* Barra de pesquisa principal */
 .searchbar {
   padding: 12px 14px;
   border-radius: 8px;
@@ -416,6 +451,7 @@ body {
               border-color 0.3s ease;
 }
 
+/* Efeito ao focar na barra de pesquisa */
 .searchbar:focus {
   width: 600px;
   height: 48px;
@@ -424,7 +460,7 @@ body {
   outline: none;
 }
 
-/* Botão do lado da barra de pesquisa */
+/* Botão ao lado da barra de pesquisa */
 .button_search {
   margin-left: 25px;
   background-color: white;
@@ -437,13 +473,13 @@ body {
   transition: background-color 0.3s;
 }
 
+/* Efeito hover no botão de página */
 .button_page:hover {
   background-color: #e0e0e0;
 }
 
-
 /* ============ SESSÃO FLASHCARDS ===============*/
-
+/* Seção dos flashcards interativos */
 .section_comp {
   background-color: #000000;
   width: 100%;
@@ -455,11 +491,8 @@ body {
   flex: 1;
 }
 
-
-@media (max-height: 700px) {
-}
-
-.flashcard { /* versao colapsada dos itens interativos */
+/* Flashcard colapsado */
+.flashcard {
   background: linear-gradient(180deg, #15202B 0%, #15202B 25%, #000000 100%);
   width: 20%;
   height: 180px;
@@ -478,22 +511,22 @@ body {
   cursor: pointer;
 }
 
-
-.flashcard:hover { /* versao expandida dos itens interativos */
+/* Flashcard expandido ao passar o mouse */
+.flashcard:hover {
   height: 300px;      
   box-shadow:
     0 6px 30px rgba(255, 255, 255, 0.3),
     0 4px 16px rgba(0, 0, 0, 0.5);
 }
 
-
+/* Imagem do flashcard */
 .flashcard img { 
   padding-top: 20px;
   width: 100px;
   height: 100px;
 }
 
-
+/* Título e texto do flashcard */
 .flashcard h2,
 .flashcard p { 
   color: white;
@@ -501,18 +534,21 @@ body {
   padding: 0 8px;
 }
 
+/* Texto do flashcard escondido por padrão */
 .flashcard p {
   display: none;
 }
 
+/* Mostra o texto ao passar o mouse */
 .flashcard:hover p {
   display: block;
   margin-top: 8px;
   padding: 0 8px;
   color: white;
 }
-/* ========= PÁGINA DO PESQUISADOR =========*/
 
+/* ========= PÁGINA DO PESQUISADOR =========*/
+/* Seção principal da página do pesquisador */
 .researchSection {
   background: linear-gradient(180deg, #15202B 15%, #000000 100%);
   min-height: 100vh;
@@ -526,6 +562,7 @@ body {
   justify-content: center;
 }
 
+/* Card do pesquisador */
 .researchCard {
   background: linear-gradient(180deg, #1E2A38 0%, #15202B 100%);
   color: #ffffff;
@@ -539,10 +576,12 @@ body {
   border: 1px solid rgba(255,255,255,0.08);
 }
 
+/* Parágrafo dentro do card */
 .researchCard p{
   padding-top: 15px;
 }
 
+/* Imagem do pesquisador */
 .researchCard img {
   width: 130px;
   height: 130px;
@@ -552,12 +591,15 @@ body {
   display: block;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
+
+/* Nome do pesquisador */
 .researchName {
   text-align: center;
   font-size: 24px;
   margin-bottom: 24px;
 }
 
+/* Informações detalhadas do pesquisador */
 .researchInfo {
   background: linear-gradient(180deg, #1E2A38 0%, #15202B 100%);
   color: #ffffff;
@@ -570,6 +612,7 @@ body {
   flex-direction: column;
 }
 
+/* Título das informações do pesquisador */
 .researchInfo h2 {
   background: linear-gradient(90deg, #FFD700 0%, #B8860B 25%);
   -webkit-background-clip: text;
@@ -580,6 +623,7 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Lista de artigos/informações */
 .researchInfo ul {
   flex-grow: 1;
   overflow-y: auto;
@@ -588,6 +632,7 @@ body {
   padding: 0 1rem 0 0; 
 }
 
+/* Item da lista de artigos */
 .researchInfo li {
   margin-bottom: 1rem;
   border-radius: 0 8px 8px 0;
@@ -597,11 +642,13 @@ body {
   overflow: hidden;
 }
 
+/* Efeito hover no item da lista */
 .researchInfo li:hover {
   transform: translateX(5px);
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
+/* Link de artigo */
 .researchInfo li a.link-artigo {
   display: block;
   padding: 1rem;
@@ -611,10 +658,12 @@ body {
   font-weight: 500;
 }
 
+/* Efeito hover no link de artigo */
 .researchInfo li a.link-artigo:hover {
   color: #FFD700;
 }
 
+/* Barra de rolagem da lista de artigos */
 .researchInfo ul::-webkit-scrollbar {
   width: 8px;
 }
@@ -626,12 +675,8 @@ body {
   border-radius: 4px;
   border: 2px solid #1E2A38;
 }
-/*
-.researchCard strong,
-.researchInfo strong,
-.researchInfo h2 {
-  color: goldenrod;
-}*/
+
+/* Destaque em negrito dourado degradê */
 .researchCard strong,
 .researchInfo strong {
   background: linear-gradient(90deg, #FFD700 0%, #B8860B 100%);
@@ -641,6 +686,7 @@ body {
   font-weight: 700;
 }
 
+/* Título das informações do pesquisador */
 .researchInfo h2 {
   background: linear-gradient(90deg, #FFD700 0%, #B8860B 25%);
   -webkit-background-clip: text;
@@ -648,6 +694,7 @@ body {
   color: transparent;
 }
 
+/* Container de palavras-chave */
 .keywords-container {
   display: flex;
   flex-wrap: wrap;
@@ -655,6 +702,7 @@ body {
   margin-top: 16px;
 }
 
+/* Caixa de palavra-chave */
 .keyword-box {
   text-decoration: none;
   background: linear-gradient(150deg, #B97A2F 0%, #92531F 90%);
@@ -670,12 +718,14 @@ body {
   word-break: break-word;
 }
 
+/* Palavra-chave no card do pesquisador */
 .researchCard .keyword-box {
   white-space: normal;
   height: auto;
   line-height: 1.4;
 }
 
+/* Responsividade para página do pesquisador */
 @media (max-width: 992px) {
   .researchSection {
     flex-direction: column; 
@@ -714,8 +764,9 @@ body {
     padding: 3px 7px;
   }
 }
-/* ============= FOOTER =============== */
 
+/* ============= FOOTER =============== */
+/* Rodapé da página */
 .footer {
   flex-shrink: 0;
   background-color: black;
@@ -727,14 +778,14 @@ body {
   justify-content: center;
 }
 
-
+/* Texto do rodapé */
 .footer p{
   font-style: normal;
   font-size: 13px;
 }
 
-
-.button_page { /* Botão para ir pra página do pesquisador ??? que isso ?*/
+/* Botão para ir para página do pesquisador */
+.button_page {
   margin-left: 70px;
   background-color: #ffffff;
   color: #095fc0;
@@ -748,6 +799,7 @@ body {
 .button_page:hover { background-color: #e0e0e0; }
 
 /* ========= RESULTADOS – Tabela por nome ========= */
+/* Container dos resultados de busca */
 .searchResults {
   width: 93%;
   margin: 2rem auto;
@@ -765,21 +817,24 @@ body {
   color: #ffffff;
 }
 
-
+/* Animação de fade para linhas da tabela */
 @keyframes fadeSlideIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 .tabela-resultados tbody tr { animation: fadeSlideIn 0.4s ease-in; }
+
+/* Bordas arredondadas nas extremidades da tabela */
 .tabela-resultados tbody td:first-child {
   border-top-left-radius: 15px;
   border-bottom-left-radius: 15px;
 }
-
 .tabela-resultados tbody td:last-child {
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
 }
+
+/* Link para ORCID com gradiente dourado */
 .link-orcid {
   background-image: linear-gradient(90deg, #FFD700 0%, #B8860B 100%);
   -webkit-background-clip: text;
@@ -793,6 +848,7 @@ body {
   padding: 0;
 }
 
+/* Link de artigo */
 .link-artigo {
   text-decoration: none;
   color: #ffffff;
@@ -802,11 +858,13 @@ body {
 }
 
 /* ====== Botão “Ver mais” ====== */
+/* Container do botão "ver mais" */
 .ver-mais-container {
   margin-top: 2rem;
   display: flex;
   justify-content: center;
 }
+/* Botão "ver mais" */
 .ver-mais-btn {
   margin-left: 25px;
   background-color: #ffffff;
@@ -823,11 +881,13 @@ body {
 }
 
 /* ====== Filtro avançado (Página Pesquisa por Nome) ====== */
+/* Container do botão de filtro */
 .filtro-toggle-container {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 1rem;
 }
+/* Botão para abrir filtro avançado */
 .toggle-filtro-btn {
   background-color: #ffffff;
   color: goldenrod;
@@ -842,6 +902,7 @@ body {
   background-color: #e0e0e0;
 }
 
+/* Área do filtro avançado */
 .filtro-avancado {
   background: linear-gradient(180deg, #15202B 15%, #000000 100%);
   border-radius: 15px;
@@ -853,6 +914,7 @@ body {
   gap: 16px;
 }
 
+/* Inputs do filtro avançado */
 .filtro-avancado input[type="text"],
 .filtro-avancado .orcid-input {
   background-color: rgba(255, 255, 255, 0.1);
@@ -862,14 +924,18 @@ body {
   padding: 0.5rem;
 }
 
+/* Labels do filtro */
 .filtro-avancado label {
   color: #ffffff;
 }
+
+/* Animação de expansão do filtro */
 @keyframes expandFiltro {
   from { opacity: 0; transform: scaleY(0.95); }
   to   { opacity: 1; transform: scaleY(1); }
 }
 
+/* Linha de inputs do filtro */
 .filtro-linha {
   display: flex;
   flex-wrap: wrap;
@@ -877,6 +943,7 @@ body {
   margin-bottom: 1rem;
 }
 
+/* Grupo label + input */
 .input-label-group {
   display: flex;
   flex-direction: column;
@@ -890,6 +957,7 @@ body {
   font-weight: 500;
 }
 
+/* Inputs do filtro avançado */
 .filtro-avancado input[type="text"],
 .orcid-input {
   padding: 0.5rem;
@@ -899,6 +967,7 @@ body {
   min-width: 200px;
 }
 
+/* Checkbox do filtro */
 .checkbox-container {
   display: flex;
   align-items: center;
@@ -906,6 +975,8 @@ body {
   font-size: 0.9rem;
   flex: 1;
 }
+
+/* Botão de busca do filtro */
 .search-button {
   margin-left: 25px;
   background-color: #ffffff;
@@ -921,8 +992,8 @@ body {
   background-color: #e0e0e0;
 }
 
-
 /* --- RESULTADOS DE BUSCA COMO CARDS ESCUROS --- */
+/* Tabela de resultados estilizada como cards */
 .tabela-resultados {
   width: 100%;
   min-width: 650px;
@@ -931,11 +1002,11 @@ body {
   background: transparent !important; 
 }
 
+/* Linha da tabela com sombra e animação */
 .tabela-resultados tbody tr {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-
 .tabela-resultados tbody tr:hover {
   transform: translateY(-6px);
   box-shadow:
@@ -943,10 +1014,12 @@ body {
     0 4px 16px rgba(0, 0, 0, 0.5);
 }
 
+/* Células da tabela com fundo escuro */
 .tabela-resultados td {
   background: linear-gradient(180deg, #1E2A38 0%, #15202B 100%);
 }
 
+/* Células e cabeçalhos da tabela */
 .tabela-resultados th,
 .tabela-resultados td {
   border: none !important;
@@ -954,6 +1027,7 @@ body {
   padding: 18px 16px;
 }
 
+/* Wrapper da página para layout flexível */
 .pageWrapper {
   min-height: 100vh;
   display: flex;
@@ -973,6 +1047,7 @@ body {
   text-align: left;
 }
 
+/* Texto dourado degradê no cabeçalho da tabela */
 .tabela-resultados thead th span {
   background: linear-gradient(120deg, #FFD700 0%, #B8860B 100%);
   -webkit-background-clip: text;
@@ -981,6 +1056,7 @@ body {
   font-weight: 600;
 }
 
+/* Bordas arredondadas no cabeçalho */
 .tabela-resultados thead th:first-child {
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
@@ -990,6 +1066,7 @@ body {
   border-bottom-right-radius: 12px;
 }
 
+/* Título dos resultados com gradiente */
 .searchResults h2 .h2-res {
   background: linear-gradient(90deg, #FFD700 0%, #B8860B 100%);
   -webkit-background-clip: text;
@@ -997,10 +1074,12 @@ body {
   color: transparent;
 }
 
+/* Título dos resultados em branco */
 .searchResults h2 .h2-result {
   color: #ffffff;
 }
 
+/* Texto digitado animado */
 .typed-text-container {
   font-size: 40px;
   color: #ffffff;
@@ -1015,6 +1094,7 @@ body {
 /* ===== RESPONSIVO ===== */
 /* ===================== */
 
+/* Responsividade para tablets */
 @media (max-width: 768px) {
   .section_search {
     padding: 60px 20px;
@@ -1050,6 +1130,7 @@ body {
   }
 }
 
+/* Responsividade para celulares */
 @media (max-width: 480px) {
   .texto_orquidea {
     font-size: 32px;
@@ -1109,12 +1190,14 @@ body {
   cursor: pointer;
 }
 
+/* Card de comparação com largura fixa */
 .comparar {
   width: 600px;
 }
 
 /* ========== SESSÃO ARTIGOS EM ALTA ==============*/
 
+/* Container da busca de artigos em alta */
 .busca-container {
   height: 80vh;
   display: flex;
@@ -1125,6 +1208,7 @@ body {
   text-align: center;
 }
 
+/* Título com ícone */
 .titulo-com-icone {
   display: flex;
   align-items: center;
@@ -1133,10 +1217,12 @@ body {
   justify-content: center;
 }
 
+/* Ícone do título */
 .icone-titulo {
   font-size: 2rem;
 }
 
+/* Título com gradiente */
 .titulo-gradiente {
   font-size: 2.4rem;
   font-weight: bold;
@@ -1145,7 +1231,7 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-
+/* Wrapper do carrossel de artigos */
 .carrossel-wrapper {
   width: 100%;
   display: flex;
@@ -1153,12 +1239,14 @@ body {
   margin: 1rem;
 }
 
+/* Container do carrossel */
 .carrossel-container {
   width: 100%;
   max-width: 700px;
   overflow: hidden;
 }
 
+/* Caixa de palavra-chave no carrossel */
 .keyword-box {
   margin: 0 8px;
   color: #15202B;
@@ -1175,24 +1263,29 @@ body {
   transition: background 0.3s ease;
 }
 
+/* Efeito hover na palavra-chave */
 .keyword-box:hover {
   background-color: #ddd;
 }
 
+/* Container do botão de voltar */
 .voltar-container {
   text-align: right;
   margin: 2rem 0;
 }
 
+/* Container dos resultados de busca */
 .searchResults {
   width: 100%;
   max-width: 1200px;
 }
 
+/* Título dos resultados */
 .titulo-resultados {
   margin-bottom: 1rem;
 }
 
+/* Subtítulo explicativo */
 .subtitulo-explicativo {
   display: block;
   color: white;
@@ -1206,18 +1299,22 @@ body {
   opacity: 0.8;
 }
 
+/* Mensagem de erro */
 .erro {
   color: red;
 }
 
+/* Texto de carregando */
 .carregando {
   font-weight: bold;
 }
 
+/* Barra de busca grande */
 .searchbar-grande {
   width: 550px;
 }
 
+/* Máscara de fade nas laterais do carrossel */
 .carrossel-fade-mask {
   position: relative;
   width: 100%;
@@ -1242,36 +1339,39 @@ body {
   );
 }
 
+/* Container principal da página */
 .page-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+/* Footer sempre no final da página */
 .page-container .footer {
   margin-top: auto;
 }
 
+/* Wrapper da tabela para rolagem horizontal */
 .table-wrapper {
   overflow-x: auto;
   width: 100%;
   -webkit-overflow-scrolling: touch;
 }
 
+/* Barra de rolagem da tabela */
 .table-wrapper::-webkit-scrollbar {
   height: 8px;
 }
-
 .table-wrapper::-webkit-scrollbar-track {
   background: #15202B;
   border-radius: 4px;
 }
-
 .table-wrapper::-webkit-scrollbar-thumb {
   background-color: #B8860B;
   border-radius: 4px;
 }
-/* Animação */
+
+/* Animação de fade para tabela */
 @keyframes fadeInSlideUp {
   from {
     opacity: 0;
@@ -1282,12 +1382,12 @@ body {
     transform: translateY(0);
   }
 }
-
 .tabela-animada {
   animation: fadeInSlideUp 0.6s ease-out;
 }
-/* ====== botão de copiar o ID orcid ====== */
 
+/* ====== botão de copiar o ID orcid ====== */
+/* Container do ORCID */
 .orcid-container {
   display: flex;
   align-items: center;
@@ -1295,17 +1395,20 @@ body {
   padding-top: 15px;
 }
 
+/* Texto do ORCID */
 .orcid-container p {
   padding-top: 0;
   white-space: nowrap;
 }
 
+/* Seção de copiar */
 .copy-section {
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
+/* Botão de copiar */
 .copy-button {
   background: none;
   border: none;
@@ -1317,17 +1420,16 @@ body {
   opacity: 0.6;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
-
 .copy-button:hover {
   opacity: 1;
   transform: scale(1.1);
 }
-
 .copy-button img {
   width: 18px;
   height: 18px;
 }
 
+/* Feedback visual ao copiar */
 .copy-feedback {
   font-size: 0.8rem;
   font-weight: bold;
@@ -1335,14 +1437,12 @@ body {
   animation: fadeIn 0.3s ease;
   white-space: nowrap;
 }
-
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
-/* Adicione estas novas regras ao seu arquivo styles.css */
-
+/* ====== Card de instituições ====== */
 .institutionsCard {
   background: linear-gradient(180deg, #1E2A38 0%, #15202B 100%);
   color: #ffffff;
@@ -1353,7 +1453,6 @@ body {
   border: 1px solid rgba(255,255,255,0.08);
   margin-top: 20px;
 }
-
 .institutionsCard h2 {
   background: linear-gradient(120deg, #FFD700 0%, #B8860B 15%);
   -webkit-background-clip: text;
@@ -1363,12 +1462,10 @@ body {
   padding-bottom: 0.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-
 .institutionsCard ul {
   list-style: none;
   padding: 0;
 }
-
 .institutionsCard li {
   background-color: #15202B;
   border-left: 4px solid #B8860B;
@@ -1377,18 +1474,15 @@ body {
   border-radius: 0 8px 8px 0;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 .institutionsCard li:hover {
   transform: translateX(5px);
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
-
 .institutionsCard .institution-name {
   font-weight: bold;
   font-size: 1.1rem;
   color: #fff;
 }
-
 .institutionsCard .institution-date {
   font-size: 0.9rem;
   color: #ccc;
@@ -1396,6 +1490,7 @@ body {
 }
 
 /* ===== Modal de Busca de Pesquisador ===== */
+/* Overlay do modal */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -1410,6 +1505,7 @@ body {
   backdrop-filter: blur(5px);
 }
 
+/* Conteúdo do modal */
 .modal-content {
   background: linear-gradient(180deg, #1E2A38 0%, #15202B 100%);
   color: #fff;
@@ -1425,6 +1521,7 @@ body {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
 }
 
+/* Botão de fechar modal */
 .modal-close-btn {
   position: absolute;
   top: 10px;
@@ -1437,12 +1534,12 @@ body {
   opacity: 0.7;
   transition: opacity 0.2s, transform 0.2s;
 }
-
 .modal-close-btn:hover {
   opacity: 1;
   transform: scale(1.1);
 }
 
+/* Título do modal */
 .modal-content h2 {
   text-align: center;
   margin-bottom: 1.5rem;
@@ -1452,12 +1549,12 @@ body {
   color: transparent;
 }
 
+/* Barra de busca dentro do modal */
 .modal-search-bar {
   display: flex;
   gap: 1rem;
   margin-bottom: 1rem;
 }
-
 .modal-search-bar input {
   flex-grow: 1;
   padding: 12px;
@@ -1467,7 +1564,6 @@ body {
   color: #fff;
   font-size: 1rem;
 }
-
 .modal-search-bar button {
   padding: 0 24px;
   background-color: white;
@@ -1478,28 +1574,29 @@ body {
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 .modal-search-bar button:hover {
   background-color: #e0e0e0;
 }
-
 .modal-search-bar button:disabled {
   background-color: #555;
   color: #999;
   cursor: not-allowed;
 }
 
+/* Mensagem de erro no modal */
 .modal-error {
   color: #ef4444;
   text-align: center;
   margin-bottom: 1rem;
 }
 
+/* Resultados da busca no modal */
 .modal-results {
   overflow-y: auto;
   padding-right: 10px;
 }
 
+/* Item de resultado no modal */
 .modal-result-item {
   background-color: #15202B;
   padding: 1rem;
@@ -1509,30 +1606,33 @@ body {
   border-left: 3px solid transparent;
   transition: transform 0.2s ease, border-left-color 0.2s ease;
 }
-
 .modal-result-item:hover {
   transform: translateX(5px);
   border-left-color: #B8860B;
 }
 
+/* Nome do resultado */
 .result-name {
   font-weight: bold;
   font-size: 1.1rem;
   color: #fff;
 }
 
+/* Instituição do resultado */
 .result-institution {
   font-size: 0.9rem;
   color: #9ca3af;
   margin: 0.25rem 0;
 }
 
+/* ORCID do resultado */
 .result-orcid {
   font-size: 0.9rem;
   color: #B8860B;
   font-family: 'Courier New', Courier, monospace;
 }
 
+/* Barra de rolagem dos resultados do modal */
 .modal-results::-webkit-scrollbar {
   width: 8px;
 }
@@ -1556,6 +1656,7 @@ body {
   padding: 2rem;
 }
 
+/* Opções de adição de pesquisador */
 .add-options {
   display: flex;
   flex-direction: column;
@@ -1564,22 +1665,26 @@ body {
   width: 100%;
 }
 
+/* Título das opções de adição */
 .add-title {
   color: #fff;
   margin-bottom: 1rem;
   font-size: 1.5rem;
 }
 
+/* Barra de busca nas opções de adição */
 .add-options .searchbarComp {
   background-color: #15202B;
   color: white;
   width: 90%;
 }
 
+/* Botão submit nas opções de adição */
 .add-options .submit-button {
   width: 90%;
 }
 
+/* Divisor "ou" nas opções de adição */
 .ou-divider {
   color: rgba(255, 255, 255, 0.5);
   font-weight: bold;
@@ -1587,6 +1692,8 @@ body {
   font-size: 0.9rem;
   margin: 0.5rem 0;
 }
+
+/* Texto de carregando */
 .carregando-texto {
   font-size: 1.2rem;
   font-weight: 600;
@@ -1594,7 +1701,7 @@ body {
   opacity: 0.8;
 }
 
-
+/* Responsividade para container de comparação */
 @media (max-width: 1240px) {
   .compareContainer {
     flex-direction: column;
@@ -1605,7 +1712,6 @@ body {
   .researchCard.comparar {
     width: 100%;
     max-width: 600px; 
-
   }
   
   .vs-divider {
