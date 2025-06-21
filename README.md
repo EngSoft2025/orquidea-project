@@ -114,7 +114,6 @@ Realizamos testes em diferentes níveis:
 3. Planejamento e designação de tarefas
 4. Desenvolvimento e testes (manuais e automáticos)
 5. Revisão de código e integração
-6. Deploy e verificação pós-publicação
 
 ## <div id="cronograma"></div>Cronograma
 
